@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/details_timing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="190dp"
+            android:layout_marginTop="97dp"
+            android:foregroundGravity="center"
+            tools:text="LIVE" />
+
+        <TextView
+            android:id="@+id/details_first_team_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="53sp"
+            android:layout_marginTop="40dp"
+            android:textSize="20sp"
+            tools:text="First Team" />
+
+        <TextView
+            android:id="@+id/details_second_team_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="260sp"
+            android:layout_marginTop="40dp"
+            android:textSize="20sp"
+            tools:text="First Team" />
+
+
+        <ImageView
+            android:id="@+id/details_first_team_image"
+            android:layout_width="80sp"
+            android:layout_height="80sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="60sp"
+            android:layout_marginTop="70dp"
+            android:src="@drawable/fc_barcelona" />
+
+        <ImageView
+            android:id="@+id/details_second_team_image"
+            android:layout_width="80sp"
+            android:layout_height="80sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="60sp"
+            android:src="@drawable/real_madrid" />
+
+        <TextView
+            android:id="@+id/details_score_first_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="85sp"
+            android:layout_marginTop="160sp"
+            android:textSize="45sp"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/details_score_second_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="160sp"
+            android:layout_marginEnd="85sp"
+            android:textSize="45sp"
+            tools:text="0" />
+
+
+    </RelativeLayout>
+</LinearLayout>

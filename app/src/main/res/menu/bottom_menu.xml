@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_scores"
+        android:enabled="true"
+        android:icon="@drawable/football"
+        android:title="@string/scores"
+        android:iconTint="@color/white"/>
+    <item
+        android:id="@+id/menu_favourites"
+        android:enabled="true"
+        android:icon="@drawable/star"
+        android:iconTint="@color/white"
+        android:title="@string/favourites" />
+    <item
+        android:id="@+id/menu_news"
+        android:enabled="true"
+        android:icon="@drawable/newspaper_folded"
+        android:title="@string/news"
+        android:iconTint="@color/white" />
+    <item
+        android:id="@+id/menu_watch"
+        android:enabled="true"
+        android:icon="@drawable/live"
+        android:title="@string/watch"
+        android:iconTint="@color/white"  />
+
+</menu>
