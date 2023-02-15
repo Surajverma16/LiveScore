@@ -113,7 +113,7 @@ class FootballScoreFragment : Fragment() {
         }
 
         binding.footballScoreRecyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.footballScoreRecyclerView.adapter =
             FootballScoreAdapter(displayArray, requireContext())
 
@@ -123,7 +123,7 @@ class FootballScoreFragment : Fragment() {
 
 
         binding.footballRecent.setOnClickListener {
-            requireActivity().supportFragmentManager?.beginTransaction()?.apply {
+            requireActivity().supportFragmentManager.beginTransaction().apply {
                 replace(R.id.fragment_container, RecentFootballFragment())
                 commit()
             }

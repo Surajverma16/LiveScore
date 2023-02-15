@@ -19,8 +19,8 @@ data class FootballScoreDataClass(
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readValue(Int::class.java.classLoader) as? Int,
-        parcel.readValue(Int::class.java.classLoader) as? Int
+        parcel.readInt(),
+        parcel.readInt()
     ) {
     }
 
@@ -30,8 +30,8 @@ data class FootballScoreDataClass(
         parcel.writeInt(secondTeamImage)
         parcel.writeString(firstTeamName)
         parcel.writeString(secondTeamName)
-        parcel.writeValue(firstTeamScore)
-        parcel.writeValue(secondTeamScore)
+        parcel.writeInt(firstTeamScore!!)
+        parcel.writeInt(secondTeamScore!!)
     }
 
     override fun describeContents(): Int {
