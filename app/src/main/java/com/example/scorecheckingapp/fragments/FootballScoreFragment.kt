@@ -117,10 +117,6 @@ class FootballScoreFragment : Fragment() {
         binding.footballScoreRecyclerView.adapter =
             FootballScoreAdapter(displayArray, requireContext())
 
-        FootballScoreAdapter(displayArray, requireContext()).onItemClick = {
-            requireActivity().intent.putExtra("Key", displayArray)
-        }
-
 
         binding.footballRecent.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction().apply {
@@ -128,6 +124,10 @@ class FootballScoreFragment : Fragment() {
                 commit()
             }
         }
+    }
+
+    private fun onMatchClicked(fragment: Fragment){
+
     }
 
 }

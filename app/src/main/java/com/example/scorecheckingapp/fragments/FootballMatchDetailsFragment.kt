@@ -1,10 +1,12 @@
 package com.example.scorecheckingapp.fragments
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
 import com.example.scorecheckingapp.databinding.FragmentFootballMatchDetailsBinding
@@ -21,13 +23,11 @@ class FootballMatchDetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentFootballMatchDetailsBinding.inflate(layoutInflater,container,false)
-
-
-        val bundle: FootballScoreDataClass? = requireActivity().intent?.getParcelableExtra("Key")
-        if (bundle != null) {
-            binding.detailsTiming.text = bundle.time
-            binding.detailsFirstTeamImage.setImageResource(bundle.firstTeamImage)
-            binding.detailsSecondTeamImage.setImageResource(bundle.secondTeamImage)
+        val bundle   =   arguments?.getParcelable<FootballScoreDataClass>("Key" )
+        if (bundle!= null) {
+            binding.detailsTiming.text = bundle?.time
+            binding.detailsFirstTeamImage.setImageResource(bundle!!.firstTeamImage)
+            binding.detailsSecondTeamImage.setImageResource(bundle!!.secondTeamImage)
             binding.detailsFirstTeamName.text = bundle.firstTeamName
             binding.detailsSecondTeamName.text = bundle.secondTeamName
             binding.detailsScoreFirstTeam.text = bundle.firstTeamScore.toString()
@@ -36,6 +36,4 @@ class FootballMatchDetailsFragment : Fragment() {
         }
         return binding.root
     }
-
-
 }
