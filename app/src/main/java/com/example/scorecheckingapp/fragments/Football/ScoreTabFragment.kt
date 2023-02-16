@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.databinding.FragmentScoreTabBinding
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.example.scorecheckingapp.adapter.ViewPagerAdapter as ViewPagerAdapter
 
 class ScoreTabFragment : Fragment() {
@@ -35,9 +36,11 @@ class ScoreTabFragment : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        binding.scoreViewPager.adapter = ViewPagerAdapter(childFragmentManager,3)
+        binding.scoreViewPager.adapter = ViewPagerAdapter(childFragmentManager, 3)
         binding.scoreViewPager.offscreenPageLimit = 3
 
         binding.scoreTab.setupWithViewPager(binding.scoreViewPager)
     }
+
+
 }

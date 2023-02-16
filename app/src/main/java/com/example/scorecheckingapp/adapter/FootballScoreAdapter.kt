@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -54,11 +55,9 @@ class FootballScoreAdapter(
         holder.footballSecondName.text = footballList[position].secondTeamName
         holder.footballFirstScore.text = footballList[position].firstTeamScore.toString()
         holder.footballSecondScore.text = footballList[position].secondTeamScore.toString()
+
         holder.itemView.setOnClickListener {
             onItemClick?.invoke(footballList[position])
-            /*val intent = Intent(context,FootballMatchDetailsFragment::class.java)
-            intent.putExtra("Key",footballList[position])
-            holder.itemView.context.startActivity(intent)*/
             val bundle = Bundle()
             bundle.putParcelable("KEY", footballList[position])
             MatchDetailsFragment().arguments = bundle
@@ -68,10 +67,7 @@ class FootballScoreAdapter(
                 addToBackStack(null)
                 commit()
             }
-
-
         }
-
     }
 
 }

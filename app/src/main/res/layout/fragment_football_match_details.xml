@@ -18,7 +18,6 @@
             android:layout_marginStart="190dp"
             android:layout_marginTop="97dp"
             android:foregroundGravity="center"
-            android:textColor="@color/white"
             tools:text="LIVE" />
 
         <TextView
@@ -29,7 +28,6 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="53sp"
             android:layout_marginTop="40dp"
-            android:textColor="@color/white"
             android:textSize="20sp"
             tools:text="First Team" />
 
@@ -41,7 +39,6 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="260sp"
             android:layout_marginTop="40dp"
-            android:textColor="@color/white"
             android:textSize="20sp"
             tools:text="First Team" />
 
@@ -74,7 +71,6 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="85sp"
             android:layout_marginTop="160sp"
-            android:textColor="@color/white"
             android:textSize="45sp"
             tools:text="0" />
 
@@ -86,7 +82,6 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="160sp"
             android:layout_marginEnd="85sp"
-            android:textColor="@color/white"
             android:textSize="45sp"
             tools:text="0" />
 

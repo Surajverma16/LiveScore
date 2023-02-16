@@ -22,7 +22,7 @@ class MatchDetailsFragment : Fragment() {
         binding = FragmentFootballMatchDetailsBinding.inflate(layoutInflater,container,false)
         val bundle   =   arguments?.getParcelable<FootballScoreDataClass>("Key" )
         if (bundle!= null) {
-            binding.detailsTiming.text = bundle?.time
+            binding.detailsTiming.text = bundle.time
             binding.detailsFirstTeamImage.setImageResource(bundle!!.firstTeamImage)
             binding.detailsSecondTeamImage.setImageResource(bundle!!.secondTeamImage)
             binding.detailsFirstTeamName.text = bundle.firstTeamName
