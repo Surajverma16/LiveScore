@@ -5,10 +5,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
-import android.text.TextUtils.replace
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.activity.FootballActivity
 import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
-import com.example.scorecheckingapp.fragments.FootballMatchDetailsFragment
-import com.example.scorecheckingapp.fragments.FootballScoreFragment
+import com.example.scorecheckingapp.fragments.Football.MatchDetailsFragment
 
 class FootballScoreAdapter(
     var footballList: ArrayList<FootballScoreDataClass>,
@@ -65,10 +61,10 @@ class FootballScoreAdapter(
             holder.itemView.context.startActivity(intent)*/
             val bundle = Bundle()
             bundle.putParcelable("KEY", footballList[position])
-            FootballMatchDetailsFragment().arguments = bundle
+            MatchDetailsFragment().arguments = bundle
 
             (context as FootballActivity).supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragment_container, FootballMatchDetailsFragment())
+                replace(R.id.fragment_container, MatchDetailsFragment())
                 addToBackStack(null)
                 commit()
             }

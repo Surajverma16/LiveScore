@@ -1,4 +1,4 @@
-package com.example.scorecheckingapp.fragments
+package com.example.scorecheckingapp.fragments.Football
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,7 @@ import com.example.scorecheckingapp.adapter.FootballScoreAdapter
 import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
 import com.example.scorecheckingapp.databinding.FragmentFootballScoreBinding
 
-class FootballScoreFragment : Fragment() {
+class TodayScoreFragment : Fragment() {
 
     lateinit var binding: FragmentFootballScoreBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,22 +112,8 @@ class FootballScoreFragment : Fragment() {
             )
         }
 
-        binding.footballScoreRecyclerView.layoutManager =
-            LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-        binding.footballScoreRecyclerView.adapter =
-            FootballScoreAdapter(displayArray, requireContext())
-
-
-        binding.footballRecent.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragment_container, RecentFootballFragment())
-                commit()
-            }
-        }
-    }
-
-    private fun onMatchClicked(fragment: Fragment){
-
+        binding.footballScoreRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+        binding.footballScoreRecyclerView.adapter = FootballScoreAdapter(displayArray, requireContext())
     }
 
 }

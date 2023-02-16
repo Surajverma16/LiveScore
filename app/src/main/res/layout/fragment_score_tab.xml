@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.Football.ScoreTabFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/score_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--<com.google.android.material.tabs.TabItem
+                android:id="@+id/recent_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recent" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/today_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/today" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/upcoming_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upcoming" />-->
+
+        </com.google.android.material.tabs.TabLayout>
+        
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/score_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/score_tab"/>
+
+
+
+
+    </RelativeLayout>
+
+</FrameLayout>

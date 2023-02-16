@@ -12,10 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.R.layout.activity_football
 import com.example.scorecheckingapp.databinding.ActivityFootballBinding
-import com.example.scorecheckingapp.fragments.FootballFavouriteFragment
-import com.example.scorecheckingapp.fragments.FootballNewsFragment
-import com.example.scorecheckingapp.fragments.FootballScoreFragment
-import com.example.scorecheckingapp.fragments.FootballWatchFragment
+import com.example.scorecheckingapp.fragments.Football.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 @Suppress("DEPRECATION")
@@ -36,16 +33,15 @@ class FootballActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val intent = Intent(this, activity_football::class.java)
 
-        setFragments(FootballScoreFragment(),"Score")
+        setFragments(ScoreTabFragment())
 
         binding.bottomNavMenu.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.menu_scores -> setFragments(FootballScoreFragment(),"Score")
-                R.id.menu_favourites -> setFragments(FootballFavouriteFragment(),"Favourite")
-                R.id.menu_news -> setFragments(FootballNewsFragment(),"News")
-                R.id.menu_watch -> setFragments(FootballWatchFragment(),"Watch")
+                R.id.menu_scores -> setFragments(ScoreTabFragment())
+                R.id.menu_favourites -> setFragments(FavouriteFragment())
+                R.id.menu_news -> setFragments(FootballNewsFragment())
+                R.id.menu_watch -> setFragments(FootballWatchFragment())
                 else -> true
             }
         }
@@ -67,11 +63,10 @@ class FootballActivity : AppCompatActivity() {
     }
 
 
-    private fun setFragments(fragment: Fragment, tag: String): Boolean {
+    private fun setFragments(fragment: Fragment): Boolean {
         supportFragmentManager?.beginTransaction()?.apply {
-            replace(R.id.fragment_container, fragment, tag)
-            title = tag
-            addToBackStack(title as String)
+            replace(R.id.fragment_container, fragment)
+            addToBackStack(null)
             commit()
         }
         return true

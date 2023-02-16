@@ -1,17 +1,14 @@
-package com.example.scorecheckingapp.fragments
+package com.example.scorecheckingapp.fragments.Football
 
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
-import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
 import com.example.scorecheckingapp.databinding.FragmentFootballMatchDetailsBinding
 
-class FootballMatchDetailsFragment : Fragment() {
+class MatchDetailsFragment : Fragment() {
   lateinit var binding: FragmentFootballMatchDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
