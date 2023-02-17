@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5sp"
+    android:background="@color/light_black"
+    android:padding="5sp">
+
+
+    <TextView
+        android:id="@+id/news_header_text"
+        android:layout_width="270dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rectangle"
+        android:padding="6sp"
+        android:text="Sample Header"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/news_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/news_image"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rectangle"
+        android:contentDescription="News Fragment"
+        android:padding="5sp"
+        android:src="@drawable/football"
+        app:layout_constraintEnd_toStartOf="@+id/news_header_text"
+        app:layout_constraintHorizontal_bias="0.392"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

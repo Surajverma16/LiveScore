@@ -2,13 +2,17 @@ package com.example.scorecheckingapp.activity
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings.ACTION_SETTINGS
+import android.view.Menu
 import android.view.MenuItem
+import android.widget.SearchView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
@@ -35,22 +39,26 @@ class MainActivity : AppCompatActivity(),
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(binding.root)
 
-        registerReceiver(InternetBroadcastReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+        registerReceiver(
+            InternetBroadcastReceiver(),
+            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        )
 
         drawerLayout = findViewById(R.id.footballActivityId)
-        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
+        actionBarDrawerToggle =
+            ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        setFragments(ScoreTabFragment(),"LiveScore")
+        setFragments(ScoreTabFragment(), "LiveScore")
 
         binding.bottomNavMenu.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.menu_scores -> setFragments(ScoreTabFragment(),"LiveScore")
-                R.id.menu_favourites -> setFragments(FavouriteFragment(),"Favourite")
-                R.id.menu_news -> setFragments(FootballNewsFragment(),"News")
-                R.id.menu_watch -> setFragments(FootballWatchFragment(),"Watch")
+                R.id.menu_scores -> setFragments(ScoreTabFragment(), "LiveScore")
+                R.id.menu_favourites -> setFragments(FavouriteFragment(), "Favourite")
+                R.id.menu_news -> setFragments(FootballNewsFragment(), "News")
+                R.id.menu_watch -> setFragments(FootballWatchFragment(), "Watch")
                 else -> true
             }
         }
@@ -64,7 +72,7 @@ class MainActivity : AppCompatActivity(),
     }
 
 
-    private fun setFragments(fragment: Fragment, title : String): Boolean {
+    private fun setFragments(fragment: Fragment, title: String): Boolean {
         supportFragmentManager?.beginTransaction()?.apply {
             replace(R.id.fragment_container, fragment)
             setTitle(title)
@@ -78,6 +86,7 @@ class MainActivity : AppCompatActivity(),
     override fun onNetworkConnectionChanged(isConnected: Boolean) {
         showNetworkMessage(isConnected)
     }
+
     override fun onResume() {
         super.onResume()
         InternetBroadcastReceiver.connectivityReceiverListener = this
@@ -98,11 +107,11 @@ class MainActivity : AppCompatActivity(),
             builder.setMessage("Check Your Internet Connection !!")
             builder.setTitle("No Internet")
             builder.setCancelable(true)
-            builder.setPositiveButton("Settings"){
-            dialog, which -> startActivity(Intent(ACTION_SETTINGS))
-        }
-            builder.setNegativeButton("Back"){
-                dialog,which -> finish()
+            builder.setPositiveButton("Settings") { dialog, which ->
+                startActivity(Intent(ACTION_SETTINGS))
+            }
+            builder.setNegativeButton("Back") { dialog, which ->
+                finish()
             }
 
             alertDialog = builder.create()
@@ -113,6 +122,15 @@ class MainActivity : AppCompatActivity(),
             alertDialog.dismiss()
             snackbar?.dismiss()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.search_menu, menu)
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        (menu.findItem(R.id.search).actionView as SearchView).apply {
+            setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        }
+        return true
     }
 
 }

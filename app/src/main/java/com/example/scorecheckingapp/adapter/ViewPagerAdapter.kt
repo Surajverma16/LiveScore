@@ -21,7 +21,6 @@ class ViewPagerAdapter(supportFragmentManager: FragmentManager , var tabCount : 
             2 -> UpcomingFragment()
             else -> TodayScoreFragment()
         }
-
     }
     override fun getPageTitle(position: Int): CharSequence{
         return when(position){

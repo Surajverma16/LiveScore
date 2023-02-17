@@ -14,22 +14,21 @@
         android:theme="@style/Theme.ScoreCheckingApp"
         tools:targetApi="31">
         <activity
-            android:name=".NoInternetActivity"
-            android:exported="false"
-            android:label="@string/title_activity_no_internet"
-            android:theme="@style/Theme.ScoreCheckingApp.NoActionBar" />
+            android:name=".SearchActivity"
+            android:exported="false" />
 
         <receiver
-            android:name=".InternetBroadcastReceiver"
+            android:name=".activity.InternetBroadcastReceiver"
             android:enabled="false"
             android:exported="false" />
 
         <activity
-            android:name=".activity.CricketActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.MainActivity"
             android:exported="true">
+            <meta-data
+                android:name="android.app.search"
+                android:resource="@xml/search" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

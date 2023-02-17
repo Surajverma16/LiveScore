@@ -5,11 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.activity.MainActivity
+import com.example.scorecheckingapp.adapter.NewsAdapter
+import com.example.scorecheckingapp.dataClass.NewsDataClass
+import com.example.scorecheckingapp.databinding.FragmentFootballNewsBinding
 
 class FootballNewsFragment : Fragment() {
 
+    lateinit var binding: FragmentFootballNewsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,12 +25,21 @@ class FootballNewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_football_news, container, false)
+        binding = FragmentFootballNewsBinding.inflate(layoutInflater,container,false)
+        return  binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).binding.bottomNavMenu.menu.getItem(2).isChecked = true
+
+        val arrayForNews = ArrayList<NewsDataClass>()
+        for (i in 1..10){
+            arrayForNews.add(NewsDataClass(R.drawable.football,"Header Sample","        TODO(\"Not yet implemented\")\n        TODO(\"Not yet implemented\")\n        TODO(\"Not yet implemented\")\n        TODO(\"Not yet implemented\")\n"))
+        }
+        binding.newsRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false)
+        binding.newsRecyclerView.adapter = NewsAdapter(arrayForNews)
+
 
     }
 
