@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.scorecheckingapp.ABC
 import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
 

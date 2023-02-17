@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.scorecheckingapp.ABC
 import com.example.scorecheckingapp.R
-import com.example.scorecheckingapp.activity.FootballActivity
+import com.example.scorecheckingapp.activity.MainActivity
 import com.example.scorecheckingapp.adapter.FootballScoreAdapter
 import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
 import com.example.scorecheckingapp.databinding.FragmentUpcomingFootballBinding
@@ -119,7 +118,7 @@ class UpcomingFragment : Fragment() {
             LinearLayoutManager.VERTICAL,false)
         binding.footballUpcomingRecyclerView.adapter = FootballScoreAdapter(displayArray, requireContext(),object : FootballScoreAdapter.onSingleItemClick{
             override fun clicked(footballScoreDataClass: FootballScoreDataClass) {
-                (context as FootballActivity).supportFragmentManager.beginTransaction().apply {
+                (context as MainActivity).supportFragmentManager.beginTransaction().apply {
                     replace(R.id.fragment_container, MatchDetailsFragment(footballScoreDataClass))
                     addToBackStack(null)
                     commit()

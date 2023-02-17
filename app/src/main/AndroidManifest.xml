@@ -28,7 +28,7 @@
             android:name=".activity.CricketActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.FootballActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

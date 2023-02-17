@@ -7,26 +7,20 @@ import android.content.IntentFilter
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
-import android.provider.Settings.ACTION_NETWORK_OPERATOR_SETTINGS
 import android.provider.Settings.ACTION_SETTINGS
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat.startActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.scorecheckingapp.R
-import com.example.scorecheckingapp.R.layout.activity_football
 import com.example.scorecheckingapp.databinding.ActivityFootballBinding
 import com.example.scorecheckingapp.fragments.Football.*
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
-import java.nio.file.attribute.AclEntry.Builder
 
 @Suppress("DEPRECATION")
-class FootballActivity : AppCompatActivity(),
+class MainActivity : AppCompatActivity(),
     InternetBroadcastReceiver.ConnectivityReceiverListener {
     lateinit var drawerLayout: DrawerLayout
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
@@ -41,10 +35,7 @@ class FootballActivity : AppCompatActivity(),
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         setContentView(binding.root)
 
-        registerReceiver(
-            InternetBroadcastReceiver(),
-            IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-        )
+        registerReceiver(InternetBroadcastReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
 
         drawerLayout = findViewById(R.id.footballActivityId)
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
@@ -52,54 +43,40 @@ class FootballActivity : AppCompatActivity(),
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        setFragments(ScoreTabFragment())
+        setFragments(ScoreTabFragment(),"LiveScore")
 
         binding.bottomNavMenu.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.menu_scores -> setFragments(ScoreTabFragment())
-                R.id.menu_favourites -> setFragments(FavouriteFragment())
-                R.id.menu_news -> setFragments(FootballNewsFragment())
-                R.id.menu_watch -> setFragments(FootballWatchFragment())
+                R.id.menu_scores -> setFragments(ScoreTabFragment(),"LiveScore")
+                R.id.menu_favourites -> setFragments(FavouriteFragment(),"Favourite")
+                R.id.menu_news -> setFragments(FootballNewsFragment(),"News")
+                R.id.menu_watch -> setFragments(FootballWatchFragment(),"Watch")
                 else -> true
             }
         }
-
-        /*binding.optionMenuDrawer.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.option_menu_cricket -> setActivity(CricketActivity())
-                else -> setActivity(FootballActivity())
-            }
-        }*/
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true
         }
-
         return super.onOptionsItemSelected(item)
     }
 
 
-    private fun setFragments(fragment: Fragment): Boolean {
+    private fun setFragments(fragment: Fragment, title : String): Boolean {
         supportFragmentManager?.beginTransaction()?.apply {
             replace(R.id.fragment_container, fragment)
+            setTitle(title)
             addToBackStack(null)
             commit()
         }
         return true
     }
 
-    private fun setActivity(activity: Activity): Boolean {
-        val intent = Intent(this, activity::class.java)
-        startActivity(intent)
-        return true
-
-    }
 
     override fun onNetworkConnectionChanged(isConnected: Boolean) {
         showNetworkMessage(isConnected)
-
     }
     override fun onResume() {
         super.onResume()
@@ -117,8 +94,6 @@ class FootballActivity : AppCompatActivity(),
             )
             snackbar?.duration = BaseTransientBottomBar.LENGTH_INDEFINITE
             snackbar?.show()
-
-
 
             builder.setMessage("Check Your Internet Connection !!")
             builder.setTitle("No Internet")

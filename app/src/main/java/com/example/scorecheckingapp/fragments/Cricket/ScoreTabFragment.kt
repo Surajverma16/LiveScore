@@ -1,16 +1,17 @@
-package com.example.scorecheckingapp.fragments.Football
+package com.example.scorecheckingapp.fragments.Cricket
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.scorecheckingapp.R
-import com.example.scorecheckingapp.activity.MainActivity
+import com.example.scorecheckingapp.databinding.FragmentScoreTab2Binding
 
 
-class FavouriteFragment : Fragment() {
+class ScoreTabFragment : Fragment() {
 
+    lateinit var binding: FragmentScoreTab2Binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,13 +22,12 @@ class FavouriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_football_favourite, container, false)
+        binding = FragmentScoreTab2Binding.inflate(layoutInflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).binding.bottomNavMenu.menu.getItem(1).isChecked = true
-
     }
 
 
