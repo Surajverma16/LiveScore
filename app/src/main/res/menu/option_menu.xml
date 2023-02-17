@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-  <item
+  <group android:id="@+id/sports">
+
+    <item
       android:title="Football"
       android:id="@+id/option_menu_football"/>
     <item
@@ -12,5 +14,5 @@
     <item
         android:title="Tennis"
         android:id="@+id/option_menu_tennis"/>
-
+  </group>
     </menu>

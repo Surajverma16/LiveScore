@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
 import com.example.scorecheckingapp.databinding.FragmentFootballMatchDetailsBinding
 
-class MatchDetailsFragment : Fragment() {
+class MatchDetailsFragment(val footballScoreDataClass: FootballScoreDataClass) : Fragment() {
   lateinit var binding: FragmentFootballMatchDetailsBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -20,17 +22,13 @@ class MatchDetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentFootballMatchDetailsBinding.inflate(layoutInflater,container,false)
-        val bundle   =   arguments?.getParcelable<FootballScoreDataClass>("Key" )
-        if (bundle!= null) {
-            binding.detailsTiming.text = bundle.time
-            binding.detailsFirstTeamImage.setImageResource(bundle!!.firstTeamImage)
-            binding.detailsSecondTeamImage.setImageResource(bundle!!.secondTeamImage)
-            binding.detailsFirstTeamName.text = bundle.firstTeamName
-            binding.detailsSecondTeamName.text = bundle.secondTeamName
-            binding.detailsScoreFirstTeam.text = bundle.firstTeamScore.toString()
-            binding.detailsScoreSecondTeam.text = bundle.secondTeamScore.toString()
-
-        }
+        binding.detailsTiming.text = footballScoreDataClass.time
+        binding.detailsFirstTeamName.text = footballScoreDataClass.firstTeamName
+        binding.detailsSecondTeamName.text = footballScoreDataClass.secondTeamName
+        binding.detailsFirstTeamImage.setImageResource(footballScoreDataClass.firstTeamImage)
+        binding.detailsSecondTeamImage.setImageResource(footballScoreDataClass.secondTeamImage)
+        binding.detailsScoreFirstTeam.text = footballScoreDataClass.firstTeamScore.toString()
+        binding.detailsScoreSecondTeam.text = footballScoreDataClass.secondTeamScore.toString()
         return binding.root
     }
 }

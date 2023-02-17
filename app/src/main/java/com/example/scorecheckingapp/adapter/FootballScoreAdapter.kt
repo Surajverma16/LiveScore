@@ -5,21 +5,20 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.content.Context
-import android.os.Bundle
-import android.text.TextUtils.replace
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.scorecheckingapp.ABC
 import com.example.scorecheckingapp.R
-import com.example.scorecheckingapp.activity.FootballActivity
 import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
-import com.example.scorecheckingapp.fragments.Football.MatchDetailsFragment
 
 class FootballScoreAdapter(
     var footballList: ArrayList<FootballScoreDataClass>,
-    val context: Context
-) :
+    val context: Context,
+    val clickedlistener: onSingleItemClick,
+
+    ) :
     RecyclerView.Adapter<FootballScoreAdapter.viewHolder>() {
     var onItemClick: ((FootballScoreDataClass) -> Unit)? = null
 
@@ -57,17 +56,13 @@ class FootballScoreAdapter(
         holder.footballSecondScore.text = footballList[position].secondTeamScore.toString()
 
         holder.itemView.setOnClickListener {
-            onItemClick?.invoke(footballList[position])
-            val bundle = Bundle()
-            bundle.putParcelable("KEY", footballList[position])
-            MatchDetailsFragment().arguments = bundle
-
-            (context as FootballActivity).supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragment_container, MatchDetailsFragment())
-                addToBackStack(null)
-                commit()
-            }
+            clickedlistener.clicked(footballList[position])
         }
     }
+
+    interface onSingleItemClick {
+        fun clicked(footballScoreDataClass: FootballScoreDataClass)
+    }
+
 
 }

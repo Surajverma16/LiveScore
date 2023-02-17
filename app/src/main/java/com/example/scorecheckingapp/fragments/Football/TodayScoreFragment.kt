@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.scorecheckingapp.ABC
 import com.example.scorecheckingapp.R
+import com.example.scorecheckingapp.activity.FootballActivity
 import com.example.scorecheckingapp.adapter.FootballScoreAdapter
 import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
 import com.example.scorecheckingapp.databinding.FragmentFootballScoreBinding
@@ -113,7 +115,20 @@ class TodayScoreFragment : Fragment() {
         }
 
         binding.footballScoreRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        binding.footballScoreRecyclerView.adapter = FootballScoreAdapter(displayArray, requireContext())
+        binding.footballScoreRecyclerView.adapter = FootballScoreAdapter(
+            displayArray,
+            requireContext(),
+            object : FootballScoreAdapter.onSingleItemClick{
+                override fun clicked(footballScoreDataClass: FootballScoreDataClass) {
+                    (context as FootballActivity).supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragment_container, MatchDetailsFragment(footballScoreDataClass))
+                        addToBackStack(null)
+                        commit()
+                    }
+                }
+
+            }
+        )
     }
 
 }

@@ -104,7 +104,6 @@ class FootballActivity : AppCompatActivity(),
     override fun onResume() {
         super.onResume()
         InternetBroadcastReceiver.connectivityReceiverListener = this
-
     }
 
     private fun showNetworkMessage(isConnected: Boolean) {
@@ -140,7 +139,9 @@ class FootballActivity : AppCompatActivity(),
             snackbar?.dismiss()
         }
     }
+
 }
+
 /*
 
 
