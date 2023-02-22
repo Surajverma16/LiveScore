@@ -32,7 +32,7 @@ class FootballTodayScoreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.footballScoreRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        binding.footballScoreRecyclerView.adapter = FootballLeagueAdapter((activity as MainActivity).globalList)
+        binding.footballScoreRecyclerView.adapter = FootballLeagueAdapter((activity as MainActivity).globalList, requireContext())
 
 
     }

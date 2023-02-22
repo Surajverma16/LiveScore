@@ -8,12 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.scorecheckingapp.API.Event
 import com.example.scorecheckingapp.API.Stage
 import com.example.scorecheckingapp.R
 
 class FootballAdapterScore(
-    var footballList: ArrayList<Event>?) :
+    var footballList: ArrayList<Event>?, val context: Context) :
     RecyclerView.Adapter<FootballAdapterScore.ViewHoldder>() {
 
     class ViewHoldder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -46,6 +47,16 @@ class FootballAdapterScore(
         holder.footballTime.text = footballList!![position].Eps
 //        holder.footballFirstName.text = footballList!![position].Events[position].T1[position].Nm
 //        holder.footballSecondName.text = footballList!![position].Events[position].T2[position].Nm
+        Glide.with(context)
+            .load("https://lsm-static-prod.livescore.com/medium/${footballList!![position].T1[0].Img}")
+            .into(holder.footballFirstImage)
+
+        Glide.with(context)
+            .load("https://lsm-static-prod.livescore.com/medium/${footballList!![position].T2[0].Img}")
+            .into(holder.footballSecondImage)
+        holder.footballFirstName.text = footballList!![position].T1[0].Nm
+        holder.footballSecondName.text = footballList!![position].T2[0].Nm
+
         holder.footballFirstScore.text = footballList!![position].Tr1
         holder.footballSecondScore.text = footballList!![position].Tr2
 //        holder.footballFirstName.text = footballList[position].

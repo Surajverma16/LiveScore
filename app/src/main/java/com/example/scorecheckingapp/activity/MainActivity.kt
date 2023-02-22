@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings.ACTION_SETTINGS
 import android.util.Log
@@ -14,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -37,7 +37,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @Suppress("DEPRECATION")
@@ -47,8 +48,6 @@ class MainActivity : AppCompatActivity(),
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     lateinit var binding: ActivityFootballBinding
     private var snackbar: Snackbar? = null
-    lateinit var footballAdapterScore: FootballAdapterScore
-    lateinit var layoutManager: LinearLayoutManager
     var globalList : ArrayList<Stage>? = null
 
 
@@ -110,10 +109,11 @@ class MainActivity : AppCompatActivity(),
             .build()
             .create(ApiInterface::class.java)
 
+
         val retrofitData = retrofit.getScore(
-            "20230222",
+            SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date()),
             "soccer",
-            "5.35",
+            "5.5",
             "b72713c116msh3868c671703c21dp15679bjsn6f00e94a7fc0",
             "livescore6.p.rapidapi.com"
         )
@@ -200,8 +200,6 @@ class MainActivity : AppCompatActivity(),
             alertDialog.show()
 
         } else {
-            alertDialog = builder.create()
-            alertDialog.dismiss()
             snackbar?.dismiss()
         }
     }
