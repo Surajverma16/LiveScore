@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.scorecheckingapp.R
-import com.example.scorecheckingapp.databinding.FragmentScoreTab2Binding
 
 
-class ScoreTabFragment : Fragment() {
+class CricketUpcomingScoreFragment : Fragment() {
 
-    lateinit var binding: FragmentScoreTab2Binding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,16 +18,10 @@ class ScoreTabFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentScoreTab2Binding.inflate(layoutInflater,container,false)
-        return binding.root
+        return inflater.inflate(R.layout.fragment_cricket_upcoming_score, container, false)
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
 
 }

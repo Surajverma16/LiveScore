@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.activity.MainActivity
-import com.example.scorecheckingapp.adapter.FootballScoreAdapter
-import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
-import com.example.scorecheckingapp.databinding.FragmentFootballScoreBinding
+import com.example.scorecheckingapp.adapter.FootballAdapterScore
+import com.example.scorecheckingapp.adapter.FootballLeagueAdapter
+import com.example.scorecheckingapp.databinding.FragmentFootballTodayScoreBinding
 
-class TodayScoreFragment : Fragment() {
+class FootballTodayScoreFragment : Fragment() {
 
-    lateinit var binding: FragmentFootballScoreBinding
+    lateinit var binding: FragmentFootballTodayScoreBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,13 +24,60 @@ class TodayScoreFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentFootballScoreBinding.inflate(layoutInflater, container, false)
+        binding = FragmentFootballTodayScoreBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.footballScoreRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+        binding.footballScoreRecyclerView.adapter = FootballLeagueAdapter((activity as MainActivity).globalList)
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+            displayArray,
+            requireContext(),
+            object : FootballScoreAdapter.onSingleItemClick{
+                override fun clicked(footballScoreDataClass: FootballScoreDataClass) {
+                    (context as MainActivity).supportFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragment_container, FootballMatchDetailsFragment(footballScoreDataClass))
+                        addToBackStack(null)
+                        commit()
+                    }
+                }
+
+            }*/
+//        )
+
+
+
+
+
+/*
         val displayArray = ArrayList<FootballScoreDataClass>()
         for (i in 0..10) {
             displayArray.add(
@@ -111,23 +157,4 @@ class TodayScoreFragment : Fragment() {
                     1
                 )
             )
-        }
-
-        binding.footballScoreRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        binding.footballScoreRecyclerView.adapter = FootballScoreAdapter(
-            displayArray,
-            requireContext(),
-            object : FootballScoreAdapter.onSingleItemClick{
-                override fun clicked(footballScoreDataClass: FootballScoreDataClass) {
-                    (context as MainActivity).supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.fragment_container, MatchDetailsFragment(footballScoreDataClass))
-                        addToBackStack(null)
-                        commit()
-                    }
-                }
-
-            }
-        )
-    }
-
-}
+        }*/

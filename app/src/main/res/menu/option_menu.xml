@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/sports">
+    <item
+        android:id="@+id/sports_options"
+        android:title="Sports">
+        <menu>
+            <group
+                android:checkableBehavior="single">
 
         <item
             android:id="@+id/option_menu_football"
             android:icon="@drawable/football"
-            android:title="Football" />
+            android:title="Football"
+            android:checkable="true"/>
         <item
             android:id="@+id/option_menu_cricket"
             android:icon="@drawable/cricket_ball"
-            android:title="Cricket" />
+            android:title="Cricket"
+            android:checkable="true"/>
         <item
             android:id="@+id/option_menu_hockey"
             android:icon="@drawable/hockey_sticks"
-            android:title="Hockey" />
+            android:title="Hockey"
+            android:checkable="true"/>
         <item
             android:id="@+id/option_menu_tennis"
             android:icon="@drawable/tennis_ball"
-            android:title="Tennis" />
+            android:title="Tennis"
+            android:checkable="true"/>
         <item
             android:id="@+id/option_menu_basketball"
             android:icon="@drawable/basketball"
-            android:title="BasketBall" />
-    </group>
+            android:title="BasketBall"
+            android:checkable="true"/>
+            </group>
+        </menu>
+    </item>
 </menu>

@@ -1,4 +1,4 @@
-package com.example.scorecheckingapp.fragments.Football
+package com.example.scorecheckingapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.activity.MainActivity
 
 
-class FootballWatchFragment : Fragment() {
+class WatchFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,7 +20,7 @@ class FootballWatchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_football_watch, container, false)
+        return inflater.inflate(R.layout.fragment_watch, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

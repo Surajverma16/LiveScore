@@ -3,15 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Football.TodayScoreFragment">
+    tools:context=".fragments.Football.FootballTodayScoreFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/football_score_recyclerView"
@@ -20,6 +16,5 @@
                     android:layout_marginTop="2dp"
                     android:orientation="vertical" />
 
-            </RelativeLayout>
     </RelativeLayout>
 </FrameLayout>

@@ -10,13 +10,13 @@ import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.activity.MainActivity
 import com.example.scorecheckingapp.adapter.FootballScoreAdapter
 import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
-import com.example.scorecheckingapp.databinding.FragmentUpcomingFootballBinding
+import com.example.scorecheckingapp.databinding.FragmentFootballUpcomingScoreBinding
 
 
 
-class UpcomingFragment : Fragment() {
+class FootballUpcomingScoreFragment : Fragment() {
 
-    lateinit var binding: FragmentUpcomingFootballBinding
+    lateinit var binding: FragmentFootballUpcomingScoreBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,7 +27,7 @@ class UpcomingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentUpcomingFootballBinding.inflate(layoutInflater,container,false)
+        binding = FragmentFootballUpcomingScoreBinding.inflate(layoutInflater,container,false)
         return binding.root
     }
 
@@ -119,7 +119,7 @@ class UpcomingFragment : Fragment() {
         binding.footballUpcomingRecyclerView.adapter = FootballScoreAdapter(displayArray, requireContext(),object : FootballScoreAdapter.onSingleItemClick{
             override fun clicked(footballScoreDataClass: FootballScoreDataClass) {
                 (context as MainActivity).supportFragmentManager.beginTransaction().apply {
-                    replace(R.id.fragment_container, MatchDetailsFragment(footballScoreDataClass))
+                    replace(R.id.fragment_container, FootballMatchDetailsFragment(footballScoreDataClass))
                     addToBackStack(null)
                     commit()
                 }

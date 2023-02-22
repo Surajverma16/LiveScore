@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_scores"
         android:enabled="true"
         android:icon="@drawable/football"
+        android:iconTint="@color/white"
         android:title="@string/scores"
-        android:iconTint="@color/white"/>
+
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menu_favourites"
         android:enabled="true"
         android:icon="@drawable/star"
         android:iconTint="@color/white"
-        android:title="@string/favourites" />
+        android:title="@string/favourites"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menu_news"
         android:enabled="true"
         android:icon="@drawable/newspaper_folded"
+        android:iconTint="@color/white"
         android:title="@string/news"
-        android:iconTint="@color/white" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menu_watch"
         android:enabled="true"
         android:icon="@drawable/live"
+        android:iconTint="@color/white"
         android:title="@string/watch"
-        android:iconTint="@color/white"  />
+        app:showAsAction="ifRoom" />
 
 </menu>

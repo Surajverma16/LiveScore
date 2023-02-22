@@ -1,6 +1,5 @@
 package com.example.scorecheckingapp.activity
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.app.SearchManager
 import android.content.Context
@@ -10,6 +9,7 @@ import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings.ACTION_SETTINGS
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
@@ -17,26 +17,47 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.scorecheckingapp.API.ApiInterface
+import com.example.scorecheckingapp.API.BASE_URL
+import com.example.scorecheckingapp.API.Score
+import com.example.scorecheckingapp.API.Stage
 import com.example.scorecheckingapp.R
+import com.example.scorecheckingapp.adapter.FootballAdapterScore
 import com.example.scorecheckingapp.databinding.ActivityFootballBinding
+import com.example.scorecheckingapp.fragments.Cricket.CricketScoreTabFragment
+import com.example.scorecheckingapp.fragments.FavouriteFragment
 import com.example.scorecheckingapp.fragments.Football.*
+import com.example.scorecheckingapp.fragments.NewsFragment
+import com.example.scorecheckingapp.fragments.WatchFragment
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(),
     InternetBroadcastReceiver.ConnectivityReceiverListener {
-    lateinit var drawerLayout: DrawerLayout
-    lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     lateinit var binding: ActivityFootballBinding
     private var snackbar: Snackbar? = null
+    lateinit var footballAdapterScore: FootballAdapterScore
+    lateinit var layoutManager: LinearLayoutManager
+    var globalList : ArrayList<Stage>? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFootballBinding.inflate(layoutInflater)
 
         //Used for giving activity only night mode
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         setContentView(binding.root)
 
         registerReceiver(
@@ -51,17 +72,77 @@ class MainActivity : AppCompatActivity(),
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        setFragments(ScoreTabFragment(), "LiveScore")
+        setFragments(FootballScoreTabFragment(),"LiveScore")
+        setBottomMenu(FootballScoreTabFragment(), "FLiveScore")
 
+
+        binding.optionMenuDrawer.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.option_menu_football -> {
+                    setBottomMenu(
+                        FootballScoreTabFragment(),
+                        "FLiveScore"
+                    ); setFragments(FootballScoreTabFragment(), "LiveScore");
+                    binding.bottomNavMenu.menu.findItem(R.id.menu_scores)
+                        .setIcon(R.drawable.football)
+                    true
+                }
+                R.id.option_menu_cricket -> {
+                    setBottomMenu(CricketScoreTabFragment(), "CLiveScore");setFragments(
+                        CricketScoreTabFragment(),
+                        "CLiveScore"
+                    );
+                    binding.bottomNavMenu.menu.findItem(R.id.menu_scores)
+                        .setIcon(R.drawable.cricket_ball)
+                    true
+                }
+                else -> setBottomMenu(FootballScoreTabFragment(), "FLiveScore")
+            }
+        }
+
+        getApiData()
+    }
+
+    fun getApiData() {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiInterface::class.java)
+
+        val retrofitData = retrofit.getScore(
+            "20230222",
+            "soccer",
+            "5.35",
+            "b72713c116msh3868c671703c21dp15679bjsn6f00e94a7fc0",
+            "livescore6.p.rapidapi.com"
+        )
+        retrofitData.enqueue(object : Callback<Score> {
+            override fun onResponse(call: Call<Score>, response: Response<Score>) {
+                val responseBody = response.body()!!
+                Log.d("Response", responseBody.Stages.toString())
+                globalList = responseBody.Stages
+
+            }
+
+            override fun onFailure(call: Call<Score>, t: Throwable) {
+                Log.d("Failure", t.localizedMessage!!)
+            }
+        })
+    }
+
+
+    private fun setBottomMenu(bottomFragment: Fragment, title: String): Boolean {
         binding.bottomNavMenu.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.menu_scores -> setFragments(ScoreTabFragment(), "LiveScore")
+                R.id.menu_scores -> setFragments(bottomFragment, title)
                 R.id.menu_favourites -> setFragments(FavouriteFragment(), "Favourite")
-                R.id.menu_news -> setFragments(FootballNewsFragment(), "News")
-                R.id.menu_watch -> setFragments(FootballWatchFragment(), "Watch")
+                R.id.menu_news -> setFragments(NewsFragment(), "News")
+                R.id.menu_watch -> setFragments(WatchFragment(), "Watch")
                 else -> true
             }
         }
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -73,11 +154,12 @@ class MainActivity : AppCompatActivity(),
 
 
     private fun setFragments(fragment: Fragment, title: String): Boolean {
-        supportFragmentManager?.beginTransaction()?.apply {
+        supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_container, fragment)
             setTitle(title)
             addToBackStack(null)
             commit()
+            drawerLayout.closeDrawers()
         }
         return true
     }
@@ -94,7 +176,7 @@ class MainActivity : AppCompatActivity(),
 
     private fun showNetworkMessage(isConnected: Boolean) {
         val builder = AlertDialog.Builder(this)
-        var alertDialog = builder.create()
+        val alertDialog: AlertDialog
         if (!isConnected) {
             snackbar = Snackbar.make(
                 findViewById(R.id.footballActivityId),

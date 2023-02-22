@@ -10,11 +10,11 @@ import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.activity.MainActivity
 import com.example.scorecheckingapp.adapter.FootballScoreAdapter
 import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
-import com.example.scorecheckingapp.databinding.FragmentRecentFootballBinding
+import com.example.scorecheckingapp.databinding.FragmentFootballRecentScoreBinding
 
-class RecentFragment : Fragment() {
+class FootballRecentScoreFragment : Fragment() {
 
-    lateinit var binding: FragmentRecentFootballBinding
+    lateinit var binding: FragmentFootballRecentScoreBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,7 +25,7 @@ class RecentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentRecentFootballBinding.inflate(layoutInflater,container,false)
+        binding = FragmentFootballRecentScoreBinding.inflate(layoutInflater,container,false)
         return binding.root
     }
 
@@ -120,7 +120,7 @@ class RecentFragment : Fragment() {
             object : FootballScoreAdapter.onSingleItemClick{
                 override fun clicked(footballScoreDataClass: FootballScoreDataClass) {
                     (context as MainActivity).supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.fragment_container, MatchDetailsFragment(footballScoreDataClass))
+                        replace(R.id.fragment_container, FootballMatchDetailsFragment(footballScoreDataClass))
                         addToBackStack(null)
                         commit()
                     }

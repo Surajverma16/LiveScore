@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.dataClass.NewsDataClass
 
@@ -19,7 +18,7 @@ class NewsAdapter(val newsArray: ArrayList<NewsDataClass>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): itemViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.football_news_list, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.list_news, parent, false)
         return itemViewHolder(itemView)
     }
 

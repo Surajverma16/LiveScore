@@ -1,4 +1,4 @@
-package com.example.scorecheckingapp.fragments.Football
+package com.example.scorecheckingapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,11 @@ import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.activity.MainActivity
 import com.example.scorecheckingapp.adapter.NewsAdapter
 import com.example.scorecheckingapp.dataClass.NewsDataClass
-import com.example.scorecheckingapp.databinding.FragmentFootballNewsBinding
+import com.example.scorecheckingapp.databinding.FragmentNewsBinding
 
-class FootballNewsFragment : Fragment() {
+class NewsFragment : Fragment() {
 
-    lateinit var binding: FragmentFootballNewsBinding
+    lateinit var binding: FragmentNewsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,7 +25,7 @@ class FootballNewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentFootballNewsBinding.inflate(layoutInflater,container,false)
+        binding = FragmentNewsBinding.inflate(layoutInflater,container,false)
         return  binding.root
     }
 

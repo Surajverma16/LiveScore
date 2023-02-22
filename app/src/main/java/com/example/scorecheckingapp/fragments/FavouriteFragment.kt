@@ -1,4 +1,4 @@
-package com.example.scorecheckingapp.fragments.Football
+package com.example.scorecheckingapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,7 +21,7 @@ class FavouriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_football_favourite, container, false)
+        return inflater.inflate(R.layout.fragment_favourite, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
