@@ -1,4 +1,6 @@
-package com.example.scorecheckingapp.API
+package com.example.scorecheckingapp.API.matchApi
+
+import com.example.scorecheckingapp.API.matchApi.Event
 
 data class Stage(
     val Ccd: String,

@@ -32,7 +32,7 @@ class FootballRecentScoreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val displayArray = ArrayList<FootballScoreDataClass>()
-        for (i in 0..10) {
+       /* for (i in 0..10) {
             displayArray.add(
                 FootballScoreDataClass(
                     "Live",
@@ -111,7 +111,7 @@ class FootballRecentScoreFragment : Fragment() {
                 )
             )
         }
-
+*/
         binding.footballRecentRecyclerView.layoutManager = LinearLayoutManager(requireContext(),
             LinearLayoutManager.VERTICAL,false)
         binding.footballRecentRecyclerView.adapter = FootballScoreAdapter(

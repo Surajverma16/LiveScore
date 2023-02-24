@@ -17,18 +17,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.scorecheckingapp.API.ApiInterface
-import com.example.scorecheckingapp.API.BASE_URL
-import com.example.scorecheckingapp.API.Score
-import com.example.scorecheckingapp.API.Stage
+import com.example.scorecheckingapp.API.matchApi.ApiInterface
+import com.example.scorecheckingapp.API.matchApi.BASE_URL
+import com.example.scorecheckingapp.API.matchApi.Score
+import com.example.scorecheckingapp.API.matchApi.Stage
 import com.example.scorecheckingapp.R
-import com.example.scorecheckingapp.adapter.FootballAdapterScore
 import com.example.scorecheckingapp.databinding.ActivityFootballBinding
 import com.example.scorecheckingapp.fragments.Cricket.CricketScoreTabFragment
 import com.example.scorecheckingapp.fragments.FavouriteFragment
 import com.example.scorecheckingapp.fragments.Football.*
-import com.example.scorecheckingapp.fragments.NewsFragment
+import com.example.scorecheckingapp.fragments.News.NewsFragment
 import com.example.scorecheckingapp.fragments.WatchFragment
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -51,6 +49,7 @@ class MainActivity : AppCompatActivity(),
     var globalList : ArrayList<Stage>? = null
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFootballBinding.inflate(layoutInflater)
@@ -70,65 +69,12 @@ class MainActivity : AppCompatActivity(),
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        getApiData()
 
-        setFragments(FootballScoreTabFragment(),"LiveScore")
+
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, FootballScoreTabFragment()).commit()
         setBottomMenu(FootballScoreTabFragment(), "FLiveScore")
 
-
-        binding.optionMenuDrawer.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.option_menu_football -> {
-                    setBottomMenu(
-                        FootballScoreTabFragment(),
-                        "FLiveScore"
-                    ); setFragments(FootballScoreTabFragment(), "LiveScore");
-                    binding.bottomNavMenu.menu.findItem(R.id.menu_scores)
-                        .setIcon(R.drawable.football)
-                    true
-                }
-                R.id.option_menu_cricket -> {
-                    setBottomMenu(CricketScoreTabFragment(), "CLiveScore");setFragments(
-                        CricketScoreTabFragment(),
-                        "CLiveScore"
-                    );
-                    binding.bottomNavMenu.menu.findItem(R.id.menu_scores)
-                        .setIcon(R.drawable.cricket_ball)
-                    true
-                }
-                else -> setBottomMenu(FootballScoreTabFragment(), "FLiveScore")
-            }
-        }
-
-        getApiData()
-    }
-
-    fun getApiData() {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiInterface::class.java)
-
-
-        val retrofitData = retrofit.getScore(
-            SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date()),
-            "soccer",
-            "5.5",
-            "b72713c116msh3868c671703c21dp15679bjsn6f00e94a7fc0",
-            "livescore6.p.rapidapi.com"
-        )
-        retrofitData.enqueue(object : Callback<Score> {
-            override fun onResponse(call: Call<Score>, response: Response<Score>) {
-                val responseBody = response.body()!!
-                Log.d("Response", responseBody.Stages.toString())
-                globalList = responseBody.Stages
-
-            }
-
-            override fun onFailure(call: Call<Score>, t: Throwable) {
-                Log.d("Failure", t.localizedMessage!!)
-            }
-        })
     }
 
 
@@ -147,8 +93,34 @@ class MainActivity : AppCompatActivity(),
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            binding.optionMenuDrawer.setNavigationItemSelectedListener {
+                when (it.itemId) {
+                    R.id.option_menu_football -> {
+                        setBottomMenu(
+                            FootballScoreTabFragment(),
+                            "FLiveScore"
+                        ); setFragments(FootballScoreTabFragment(), "LiveScore");
+
+                        binding.bottomNavMenu.menu.findItem(R.id.menu_scores)
+                            .setIcon(R.drawable.football)
+                        true
+                    }
+                    R.id.option_menu_cricket -> {
+                        setBottomMenu(CricketScoreTabFragment(), "CLiveScore");setFragments(
+                            CricketScoreTabFragment(),
+                            "CLiveScore"
+                        );
+                        binding.bottomNavMenu.menu.findItem(R.id.menu_scores)
+                            .setIcon(R.drawable.cricket_ball)
+                        true
+                    }
+                    else -> setBottomMenu(FootballScoreTabFragment(), "FLiveScore")
+                }
+            }
             return true
         }
+
+
         return super.onOptionsItemSelected(item)
     }
 
@@ -162,6 +134,33 @@ class MainActivity : AppCompatActivity(),
             drawerLayout.closeDrawers()
         }
         return true
+    }
+
+    fun getApiData() {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiInterface::class.java)
+
+
+        val retrofitData = retrofit.getScore(
+            SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date()),
+            "football",
+            "5.5",
+            "b72713c116msh3868c671703c21dp15679bjsn6f00e94a7fc0",
+            "livescore6.p.rapidapi.com"
+        )
+        retrofitData.enqueue(object : Callback<Score> {
+            override fun onResponse(call: Call<Score>, response: Response<Score>) {
+                val responseBody = response.body()!!
+                globalList = responseBody.Stages
+                Log.d("Response", responseBody.Stages.toString())
+            }
+            override fun onFailure(call: Call<Score>, t: Throwable) {
+                Log.d("Failure", t.localizedMessage!!)
+            }
+        })
     }
 
 

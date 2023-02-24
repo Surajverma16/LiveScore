@@ -4,39 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5sp"
-    android:background="@color/light_black"
-    android:padding="5sp">
+    android:background="@color/black"
+    android:paddingBottom="10sp">
 
 
     <TextView
         android:id="@+id/news_header_text"
         android:layout_width="270dp"
-        android:layout_height="90dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:background="@drawable/rectangle"
-        android:padding="6sp"
+        android:padding="2sp"
         android:text="Sample Header"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="12sp"
+        android:layout_marginStart="5sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/news_image"
+        app:layout_constraintStart_toEndOf="@+id/image_card_view"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/news_image"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+
+    <TextView
+        android:id="@+id/news_type_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginBottom="5sp"
+        android:background="@drawable/news_sports_shape"
+        android:paddingStart="4sp"
+        android:paddingTop="1sp"
+        android:paddingEnd="4sp"
+        android:paddingBottom="2sp"
+        android:textColor="@color/white"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_card_view"
+        tools:text="sports" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/image_card_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        app:cardCornerRadius="5sp"
         android:layout_marginTop="12dp"
-        android:background="@drawable/rectangle"
-        android:contentDescription="News Fragment"
-        android:padding="5sp"
-        android:src="@drawable/football"
         app:layout_constraintEnd_toStartOf="@+id/news_header_text"
-        app:layout_constraintHorizontal_bias="0.392"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/news_image"
+            android:layout_width="128sp"
+            android:layout_height= "72sp"
+            tools:src="@drawable/bruno_fernandes_bam1p2pd2ezt15a1tei6tkffk" />
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

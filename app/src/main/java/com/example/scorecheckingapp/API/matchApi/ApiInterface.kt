@@ -1,4 +1,4 @@
-package com.example.scorecheckingapp.API
+package com.example.scorecheckingapp.API.matchApi
 
 import retrofit2.Call
 import retrofit2.http.GET

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.activity.MainActivity
+import com.example.scorecheckingapp.adapter.FootballLeagueAdapter
 import com.example.scorecheckingapp.adapter.FootballScoreAdapter
 import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
 import com.example.scorecheckingapp.databinding.FragmentCricketTodayScoreBinding
@@ -33,22 +34,8 @@ class CricketTodayScoreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val displatArray =ArrayList<FootballScoreDataClass>()
 
-        for (i in 0..10){
-            displatArray.add(FootballScoreDataClass("Live",R.drawable.india,R.drawable.australia,"India","Australia",225-5,123/7))
-            displatArray.add(FootballScoreDataClass("Live",R.drawable.zimbabwe,R.drawable.new_zeland,"Zimbabwe","New Zeland",212, 350))
-        }
 
-        binding.cricketTodayScoreRecyclerview.adapter = FootballScoreAdapter(displatArray,requireContext(),object : FootballScoreAdapter.onSingleItemClick{
-            override fun clicked(footballScoreDataClass: FootballScoreDataClass) {
-                (context as MainActivity).supportFragmentManager.beginTransaction().apply {
-                    replace(R.id.fragment_container,CricketMatchDetailsFragment(footballScoreDataClass))
-                    addToBackStack(null)
-                    commit()
-                }
-
-            }
-
-        })
+        binding.cricketTodayScoreRecyclerview.adapter = FootballLeagueAdapter((activity as MainActivity).globalList , requireContext())
 
         binding.cricketTodayScoreRecyclerview.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
     }

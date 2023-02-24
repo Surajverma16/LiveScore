@@ -9,8 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.scorecheckingapp.API.Event
-import com.example.scorecheckingapp.API.Stage
+import com.example.scorecheckingapp.API.matchApi.Event
 import com.example.scorecheckingapp.R
 
 class FootballAdapterScore(
@@ -45,8 +44,6 @@ class FootballAdapterScore(
 
     override fun onBindViewHolder(holder: ViewHoldder, position: Int) {
         holder.footballTime.text = footballList!![position].Eps
-//        holder.footballFirstName.text = footballList!![position].Events[position].T1[position].Nm
-//        holder.footballSecondName.text = footballList!![position].Events[position].T2[position].Nm
         Glide.with(context)
             .load("https://lsm-static-prod.livescore.com/medium/${footballList!![position].T1[0].Img}")
             .into(holder.footballFirstImage)
@@ -59,7 +56,6 @@ class FootballAdapterScore(
 
         holder.footballFirstScore.text = footballList!![position].Tr1
         holder.footballSecondScore.text = footballList!![position].Tr2
-//        holder.footballFirstName.text = footballList[position].
     }
 
     interface onitemClicked {}

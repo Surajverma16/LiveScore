@@ -1,4 +1,4 @@
-package com.example.scorecheckingapp.API
+package com.example.scorecheckingapp.API.matchApi
 
 data class Score(
     val Stages: ArrayList<Stage>

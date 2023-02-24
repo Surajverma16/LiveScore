@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.activity.MainActivity
 import com.example.scorecheckingapp.adapter.FootballAdapterScore
 import com.example.scorecheckingapp.adapter.FootballLeagueAdapter
+import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
 import com.example.scorecheckingapp.databinding.FragmentFootballTodayScoreBinding
 
 class FootballTodayScoreFragment : Fragment() {
@@ -32,7 +34,7 @@ class FootballTodayScoreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.footballScoreRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        binding.footballScoreRecyclerView.adapter = FootballLeagueAdapter((activity as MainActivity).globalList, requireContext())
+        binding.footballScoreRecyclerView.adapter = FootballLeagueAdapter((activity as MainActivity).globalList , requireContext())
 
 
     }

@@ -8,32 +8,34 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.scorecheckingapp.API.NewsApi.TopStory
+import com.example.scorecheckingapp.API.NewsApi.Article
 import com.example.scorecheckingapp.R
 
-class NewsAdapter(val newsArray: List<TopStory>, val context: Context) :
-    RecyclerView.Adapter<NewsAdapter.itemViewHolder>() {
-    class itemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class NewsHomeSportsAdapter(val HomeArray : List<Article>, val context: Context) : RecyclerView.Adapter<NewsHomeSportsAdapter.myviewHolderHome>() {
+    class myviewHolderHome(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image = itemView.findViewById<ImageView>(R.id.news_image)
         val header = itemView.findViewById<TextView>(R.id.news_header_text)
         val sportsType = itemView.findViewById<TextView>(R.id.news_type_text)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): itemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myviewHolderHome {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.list_news, parent, false)
-        return itemViewHolder(itemView)
+        return myviewHolderHome(itemView)
     }
+    override fun getItemCount(): Int = HomeArray.size
 
-    override fun getItemCount(): Int = newsArray.size
 
-    override fun onBindViewHolder(holder: itemViewHolder, position: Int) {
-        holder.header.text = newsArray[position].title
-        holder.sportsType.text = newsArray[position].categoryLabel
+    override fun onBindViewHolder(holder: myviewHolderHome, position: Int) {
+        holder.header.text = HomeArray[position].title
+        holder.sportsType.text = HomeArray[position].categoryLabel
         Glide.with(context)
-            .load(newsArray[position].mainMedia.gallery.url)
+            .load(HomeArray[position].mainMedia.gallery.url)
             .into(holder.image)
-
-
     }
+
+
+
+
+
 }
