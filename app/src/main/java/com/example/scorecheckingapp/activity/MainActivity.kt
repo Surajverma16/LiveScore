@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity(),
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     lateinit var binding: ActivityFootballBinding
     private var snackbar: Snackbar? = null
-    var globalList : ArrayList<Stage>? = null
 
 
 
@@ -69,7 +68,6 @@ class MainActivity : AppCompatActivity(),
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        getApiData()
 
 
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, FootballScoreTabFragment()).commit()
@@ -136,32 +134,7 @@ class MainActivity : AppCompatActivity(),
         return true
     }
 
-    fun getApiData() {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiInterface::class.java)
 
-
-        val retrofitData = retrofit.getScore(
-            SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date()),
-            "football",
-            "5.5",
-            "b72713c116msh3868c671703c21dp15679bjsn6f00e94a7fc0",
-            "livescore6.p.rapidapi.com"
-        )
-        retrofitData.enqueue(object : Callback<Score> {
-            override fun onResponse(call: Call<Score>, response: Response<Score>) {
-                val responseBody = response.body()!!
-                globalList = responseBody.Stages
-                Log.d("Response", responseBody.Stages.toString())
-            }
-            override fun onFailure(call: Call<Score>, t: Throwable) {
-                Log.d("Failure", t.localizedMessage!!)
-            }
-        })
-    }
 
 
     override fun onNetworkConnectionChanged(isConnected: Boolean) {

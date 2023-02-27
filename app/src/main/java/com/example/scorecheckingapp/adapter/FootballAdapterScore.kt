@@ -13,7 +13,7 @@ import com.example.scorecheckingapp.API.matchApi.Event
 import com.example.scorecheckingapp.R
 
 class FootballAdapterScore(
-    var footballList: ArrayList<Event>?, val context: Context) :
+    var footballList: ArrayList<Event>?, val context: Context, val clicked : onClickedItem) :
     RecyclerView.Adapter<FootballAdapterScore.ViewHoldder>() {
 
     class ViewHoldder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -38,7 +38,6 @@ class FootballAdapterScore(
         if (footballList == null) {
             return 0
         }
-        Log.d("Size", footballList!!.size.toString())
         return footballList!!.size
     }
 
@@ -53,12 +52,18 @@ class FootballAdapterScore(
             .into(holder.footballSecondImage)
         holder.footballFirstName.text = footballList!![position].T1[0].Nm
         holder.footballSecondName.text = footballList!![position].T2[0].Nm
-
         holder.footballFirstScore.text = footballList!![position].Tr1
         holder.footballSecondScore.text = footballList!![position].Tr2
+
+        holder.itemView.setOnClickListener {
+            clicked.setOnClickingEvent(footballList!![position])
+        }
     }
 
-    interface onitemClicked {}
+    interface onClickedItem {
+        fun setOnClickingEvent(event: Event)
+
+    }
 
 
 }

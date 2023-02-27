@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.scorecheckingapp.API.NewsApi.HomepageArticle
+import com.example.scorecheckingapp.API.NewsApi.News
 import com.example.scorecheckingapp.API.NewsApi.TopStory
 import com.example.scorecheckingapp.R
 
@@ -17,6 +19,7 @@ class NewsAdapter(val newsArray: List<TopStory>, val context: Context) :
         val image = itemView.findViewById<ImageView>(R.id.news_image)
         val header = itemView.findViewById<TextView>(R.id.news_header_text)
         val sportsType = itemView.findViewById<TextView>(R.id.news_type_text)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): itemViewHolder {
@@ -33,6 +36,7 @@ class NewsAdapter(val newsArray: List<TopStory>, val context: Context) :
         Glide.with(context)
             .load(newsArray[position].mainMedia.gallery.url)
             .into(holder.image)
+
 
 
     }

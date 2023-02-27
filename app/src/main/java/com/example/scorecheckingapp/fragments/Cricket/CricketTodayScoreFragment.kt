@@ -35,7 +35,7 @@ class CricketTodayScoreFragment : Fragment() {
         val displatArray =ArrayList<FootballScoreDataClass>()
 
 
-        binding.cricketTodayScoreRecyclerview.adapter = FootballLeagueAdapter((activity as MainActivity).globalList , requireContext())
+//        binding.cricketTodayScoreRecyclerview.adapter = FootballLeagueAdapter((activity as MainActivity).globalList , requireContext())
 
         binding.cricketTodayScoreRecyclerview.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
     }
