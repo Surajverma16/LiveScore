@@ -51,7 +51,7 @@ class NewsSpecificSportsFragment(val category: Category) : Fragment() {
 
         val retrofitNews = retrofit.getCategories(
             category.id,
-            "b72713c116msh3868c671703c21dp15679bjsn6f00e94a7fc0",
+            "3eec2cda7cmsh0b270ac72d231f3p14a1eajsnb49154bb7c2e",
             "livescore6.p.rapidapi.com"
         )
 
@@ -71,18 +71,6 @@ class NewsSpecificSportsFragment(val category: Category) : Fragment() {
 
                     })
 
-                binding.newsRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-                binding.newsRecyclerView.adapter = NewsSpecificSportsAdapter(requireContext(),responseBody.data,
-                    object : NewsSpecificSportsAdapter.setOnClickingItem {
-                        override fun onClicked(data: Data) {
-                            requireActivity().supportFragmentManager.beginTransaction().apply {
-                                replace(R.id.fragment_container, NewsDetailsFragment(data),"NewsDetails")
-                                addToBackStack("NewsDetails")
-                                commit()
-                            }
-                        }
-
-                    })
             }
 
             override fun onFailure(call: Call<Categories>, t: Throwable) {

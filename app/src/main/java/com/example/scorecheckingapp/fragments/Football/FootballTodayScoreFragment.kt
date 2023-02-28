@@ -26,11 +26,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class FootballTodayScoreFragment : Fragment() {
-    var globalList : ArrayList<Stage>? = null
 
     lateinit var binding: FragmentFootballTodayScoreBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getApiData()
 
     }
 
@@ -40,13 +40,13 @@ class FootballTodayScoreFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentFootballTodayScoreBinding.inflate(layoutInflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        getApiData()
 
 
     }
@@ -63,7 +63,7 @@ class FootballTodayScoreFragment : Fragment() {
             SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date()),
             "football",
             "5.5",
-            "b72713c116msh3868c671703c21dp15679bjsn6f00e94a7fc0",
+            "3eec2cda7cmsh0b270ac72d231f3p14a1eajsnb49154bb7c2e",
             "livescore6.p.rapidapi.com"
         )
         retrofitData.enqueue(object : Callback<Score> {
@@ -71,7 +71,6 @@ class FootballTodayScoreFragment : Fragment() {
                 val responseBody = response.body()!!
                 binding.footballScoreRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
                 binding.footballScoreRecyclerView.adapter = FootballLeagueAdapter(responseBody.Stages , requireContext())
-                Log.d("Response", responseBody.Stages.toString())
             }
             override fun onFailure(call: Call<Score>, t: Throwable) {
                 Log.d("Failure", t.localizedMessage!!)

@@ -49,7 +49,7 @@ class NewsDetailsFragment (val data : Data): Fragment() {
 
         val retrofitNews = retrofit.getNewsDetails(
             data.id,
-            "b72713c116msh3868c671703c21dp15679bjsn6f00e94a7fc0",
+            "3eec2cda7cmsh0b270ac72d231f3p14a1eajsnb49154bb7c2e",
             "livescore6.p.rapidapi.com"
         )
 

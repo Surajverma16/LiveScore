@@ -4,10 +4,13 @@ package com.example.scorecheckingapp.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
+import android.text.style.BackgroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scorecheckingapp.API.NewsApi.Categories
@@ -34,12 +37,15 @@ class NewsCategoriesAdapter(val categoriesArray: List<Category>, val context: Co
         return categoriesArray.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     @SuppressLint("SuspiciousIndentation")
     override fun onBindViewHolder(holder: categoriesViewHolder, position: Int) {
     holder.categories.text = categoriesArray[position].title
-        holder.categories.setOnClickListener {
-            clicked.clickedCategories(categoriesArray[position])
-
+        holder.categories.apply {
+            setOnClickListener {
+                clicked.clickedCategories(categoriesArray[position])
+            }
+            backgroundTintBlendMode
         }
     }
 

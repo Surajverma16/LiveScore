@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity(),
 
 
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, FootballScoreTabFragment()).commit()
-        setBottomMenu(FootballScoreTabFragment(), "FLiveScore")
+        setBottomMenu(FootballScoreTabFragment(), "LiveScore")
 
     }
 
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity(),
                             .setIcon(R.drawable.cricket_ball)
                         true
                     }
-                    else -> setBottomMenu(FootballScoreTabFragment(), "FLiveScore")
+                    else -> setBottomMenu(FootballScoreTabFragment(), "LiveScore")
                 }
             }
             return true

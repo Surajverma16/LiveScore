@@ -7,20 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.scorecheckingapp.API.NewsApi.Category
-import com.example.scorecheckingapp.API.NewsApi.News
-import com.example.scorecheckingapp.API.NewsApi.NewsInterface
+import com.example.scorecheckingapp.API.NewsApi.*
 import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.activity.MainActivity
 import com.example.scorecheckingapp.adapter.NewsAdapter
 import com.example.scorecheckingapp.adapter.NewsCategoriesAdapter
+import com.example.scorecheckingapp.adapter.NewsSpecificSportsAdapter
 import com.example.scorecheckingapp.databinding.FragmentNewsBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-var categoriesIds : List<Category>? = null
+
+var categoriesIds: List<Category>? = null
+
 class NewsFragment() : Fragment() {
 
     lateinit var binding: FragmentNewsBinding
@@ -56,7 +57,7 @@ class NewsFragment() : Fragment() {
             .create(NewsInterface::class.java)
 
         val retrofitNews = retrofit.getNews(
-            "b72713c116msh3868c671703c21dp15679bjsn6f00e94a7fc0",
+            "3eec2cda7cmsh0b270ac72d231f3p14a1eajsnb49154bb7c2e",
             "livescore6.p.rapidapi.com"
         )
 
@@ -78,15 +79,59 @@ class NewsFragment() : Fragment() {
                     NewsCategoriesAdapter(responseBody.categories, requireContext(),
                         object : NewsCategoriesAdapter.onClickedCategories {
                             override fun clickedCategories(category: Category) {
-                                (context as MainActivity).supportFragmentManager.beginTransaction().apply {
-                                    replace(R.id.fragment_container, NewsSpecificSportsFragment(category))
-                                    addToBackStack("News")
-                                    commit()
-                                }
+                                val retrofit1 = Retrofit.Builder()
+                                    .addConverterFactory(GsonConverterFactory.create())
+                                    .baseUrl("https://livescore6.p.rapidapi.com/news/v2/")
+                                    .build()
+                                    .create(NewsCategoriesInterface::class.java)
+
+                                val retrofitNews1 = retrofit1.getCategories(
+                                    category.id,
+                                    "3eec2cda7cmsh0b270ac72d231f3p14a1eajsnb49154bb7c2e",
+                                    "livescore6.p.rapidapi.com"
+                                )
+
+                                retrofitNews1?.enqueue(object : Callback<Categories> {
+                                    override fun onResponse(
+                                        call: Call<Categories>,
+                                        response: Response<Categories>,
+                                    ) {
+                                        val responseBody1 = response.body()!!
+                                        binding.newsRecyclerView.layoutManager =
+                                            LinearLayoutManager(
+                                                requireContext(),
+                                                LinearLayoutManager.VERTICAL,
+                                                false
+                                            )
+                                        binding.newsRecyclerView.adapter =
+                                            NewsSpecificSportsAdapter(
+                                                requireContext(),
+                                                responseBody1.data,
+                                                object :
+                                                    NewsSpecificSportsAdapter.setOnClickingItem {
+                                                    override fun onClicked(data: Data) {
+                                                        (context as MainActivity).supportFragmentManager.beginTransaction()
+                                                            .apply {
+                                                                replace(
+                                                                    R.id.fragment_container,
+                                                                    NewsDetailsFragment(data)
+                                                                )
+                                                                addToBackStack(null)
+                                                                commit()
+                                                            }
+                                                    }
+                                                })
+                                    }
+
+                                    override fun onFailure(call: Call<Categories>, t: Throwable) {
+                                        Log.d("Failure", t.localizedMessage!!.toString())
+                                    }
+                                })
+
                             }
+                        }
 
-                        })
-
+                    )
             }
 
             override fun onFailure(call: Call<News>, t: Throwable) {
@@ -94,4 +139,5 @@ class NewsFragment() : Fragment() {
             }
         })
     }
+
 }
