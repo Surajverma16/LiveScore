@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.scorecheckingapp.API.NewsApi.*
 import com.example.scorecheckingapp.R
+import com.example.scorecheckingapp.activity.MainActivity
 import com.example.scorecheckingapp.adapter.NewsAdapter
+import com.example.scorecheckingapp.adapter.NewsCategoriesAdapter
 import com.example.scorecheckingapp.adapter.NewsSpecificSportsAdapter
 import com.example.scorecheckingapp.databinding.FragmentNewsBinding
 import com.example.scorecheckingapp.databinding.FragmentNewsSpecificSportsBinding
@@ -56,9 +58,31 @@ class NewsSpecificSportsFragment(val category: Category) : Fragment() {
         retrofitNews?.enqueue(object : Callback<Categories> {
             override fun onResponse(call: Call<Categories>, response: Response<Categories>) {
                 val responseBody = response.body()!!
+                binding.categoriesNews.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                binding.categoriesNews.adapter =  NewsCategoriesAdapter(categoriesIds!!, requireContext(),
+                    object : NewsCategoriesAdapter.onClickedCategories {
+                        override fun clickedCategories(category: Category) {
+                            (context as MainActivity).supportFragmentManager.beginTransaction().apply {
+                                replace(R.id.fragment_container, NewsSpecificSportsFragment(category))
+                                addToBackStack("News")
+                                commit()
+                            }
+                        }
+
+                    })
 
                 binding.newsRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-                binding.newsRecyclerView.adapter = NewsSpecificSportsAdapter(requireContext(),responseBody.data)
+                binding.newsRecyclerView.adapter = NewsSpecificSportsAdapter(requireContext(),responseBody.data,
+                    object : NewsSpecificSportsAdapter.setOnClickingItem {
+                        override fun onClicked(data: Data) {
+                            requireActivity().supportFragmentManager.beginTransaction().apply {
+                                replace(R.id.fragment_container, NewsDetailsFragment(data),"NewsDetails")
+                                addToBackStack("NewsDetails")
+                                commit()
+                            }
+                        }
+
+                    })
             }
 
             override fun onFailure(call: Call<Categories>, t: Throwable) {

@@ -14,4 +14,5 @@ data class details(
     val isArticle: Boolean,
     val layoutContext: LayoutContextX,
     val segmentTracking: SegmentTrackingX
-)
+) {
+}

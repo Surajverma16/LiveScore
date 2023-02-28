@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.scorecheckingapp.API.NewsApi.Data
 import com.example.scorecheckingapp.R
 
-class NewsSpecificSportsAdapter (val context: Context,val specificArray : List<Data>): RecyclerView.Adapter<NewsSpecificSportsAdapter.newsHolder>() {
+class NewsSpecificSportsAdapter (val context: Context,val specificArray : List<Data>, val clicked : setOnClickingItem): RecyclerView.Adapter<NewsSpecificSportsAdapter.newsHolder>() {
     class newsHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val image = itemView.findViewById<ImageView>(R.id.news_image)
         val header = itemView.findViewById<TextView>(R.id.news_header_text)
@@ -35,5 +35,13 @@ class NewsSpecificSportsAdapter (val context: Context,val specificArray : List<D
         Glide.with(context)
             .load(specificArray[position].image.data.urls.uploaded.gallery)
             .into(holder.image)
+
+        holder.itemView.setOnClickListener {
+            clicked.onClicked(specificArray[position])
+        }
+    }
+
+    interface setOnClickingItem{
+        fun onClicked(data: Data)
     }
 }

@@ -20,7 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
+var categoriesIds : List<Category>? = null
 class NewsFragment() : Fragment() {
 
     lateinit var binding: FragmentNewsBinding
@@ -69,9 +69,11 @@ class NewsFragment() : Fragment() {
                 binding.newsRecyclerView.adapter =
                     NewsAdapter(responseBody.topStories, requireContext())
 
-
                 binding.categoriesNews.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+                categoriesIds = responseBody.categories
+
                 binding.categoriesNews.adapter =
                     NewsCategoriesAdapter(responseBody.categories, requireContext(),
                         object : NewsCategoriesAdapter.onClickedCategories {
