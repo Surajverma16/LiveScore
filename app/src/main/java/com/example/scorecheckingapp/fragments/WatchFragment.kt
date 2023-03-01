@@ -26,6 +26,8 @@ class WatchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).binding.bottomNavMenu.menu.getItem(3).isChecked = true
+        (activity as MainActivity).setTitle("Watch")
+
     }
 
 

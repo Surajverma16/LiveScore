@@ -4,34 +4,74 @@
         android:id="@+id/sports_options"
         android:title="Sports">
         <menu>
-            <group
-                android:checkableBehavior="single">
+            <group android:checkableBehavior="single">
 
-        <item
-            android:id="@+id/option_menu_football"
-            android:icon="@drawable/football"
-            android:title="Football"
-            android:checkable="true"/>
-        <item
-            android:id="@+id/option_menu_cricket"
-            android:icon="@drawable/cricket_ball"
-            android:title="Cricket"
-            android:checkable="true"/>
-        <item
-            android:id="@+id/option_menu_hockey"
-            android:icon="@drawable/hockey_sticks"
-            android:title="Hockey"
-            android:checkable="true"/>
-        <item
-            android:id="@+id/option_menu_tennis"
-            android:icon="@drawable/tennis_ball"
-            android:title="Tennis"
-            android:checkable="true"/>
-        <item
-            android:id="@+id/option_menu_basketball"
-            android:icon="@drawable/basketball"
-            android:title="BasketBall"
-            android:checkable="true"/>
+                <item
+                    android:id="@+id/option_menu_football"
+                    android:checkable="true"
+                    android:icon="@drawable/football"
+                    android:title="Football" />
+                <item
+                    android:id="@+id/option_menu_cricket"
+                    android:checkable="true"
+                    android:icon="@drawable/cricket_ball"
+                    android:title="Cricket" />
+                <item
+                    android:id="@+id/option_menu_hockey"
+                    android:checkable="true"
+                    android:icon="@drawable/hockey_sticks"
+                    android:title="Hockey" />
+                <item
+                    android:id="@+id/option_menu_tennis"
+                    android:checkable="true"
+                    android:icon="@drawable/tennis_ball"
+                    android:title="Tennis" />
+                <item
+                    android:id="@+id/option_menu_basketball"
+                    android:checkable="true"
+                    android:icon="@drawable/basketball"
+                    android:title="BasketBall" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/options_setting"
+        android:title="Settings">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/options_menu_notifiction"
+                    android:icon="@drawable/baseline_notifications_24"
+                    android:title="Notification" />
+                <item
+                    android:id="@+id/options_menu_vibration"
+                    android:icon="@drawable/baseline_vibration_24"
+                    android:title="Vibration" />
+            </group>
+        </menu>
+
+    </item>
+    <item
+        android:id="@+id/options_info"
+        android:title="Info">
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/options_menu_help"
+                    android:icon="@drawable/baseline_help_24"
+                    android:title="Help" />
+                <item
+                    android:id="@+id/options_menu_privacyPolicy"
+                    android:icon="@drawable/baseline_lock_24"
+                    android:title="Privacy Policy" />
+                <item
+                    android:id="@+id/options_menu_aboutUS"
+                    android:icon="@drawable/baseline_info_24"
+                    android:title="About Us" />
             </group>
         </menu>
     </item>

@@ -25,9 +25,9 @@ class CricketViewPagerAdapter(suppoertFragmentManager: FragmentManager, var tabC
     override fun getPageTitle(position: Int): CharSequence? {
             return when(position){
                 0 -> "Recent"
-                1 -> "Today"
+                1 -> "Live"
                 2 -> "Upcoming"
-                else -> "Today"
+                else -> "Live"
             }
     }
 }

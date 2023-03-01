@@ -8,12 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.scorecheckingapp.API.NewsApi.HomepageArticle
-import com.example.scorecheckingapp.API.NewsApi.News
 import com.example.scorecheckingapp.API.NewsApi.TopStory
 import com.example.scorecheckingapp.R
 
-class NewsAdapter(val newsArray: List<TopStory>, val context: Context) :
+class NewsAdapter(val newsArray: List<TopStory>, val context: Context, val clicked : onClickingNews) :
     RecyclerView.Adapter<NewsAdapter.itemViewHolder>() {
     class itemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image = itemView.findViewById<ImageView>(R.id.news_image)
@@ -36,8 +34,14 @@ class NewsAdapter(val newsArray: List<TopStory>, val context: Context) :
         Glide.with(context)
             .load(newsArray[position].mainMedia.gallery.url)
             .into(holder.image)
+        holder.itemView.setOnClickListener {
+            clicked.clickedNews(newsArray[position])
+        }
 
 
 
+    }
+    interface onClickingNews{
+        fun clickedNews(topStory: TopStory)
     }
 }

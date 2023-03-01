@@ -12,6 +12,7 @@ import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.activity.MainActivity
 import com.example.scorecheckingapp.adapter.NewsAdapter
 import com.example.scorecheckingapp.adapter.NewsCategoriesAdapter
+import com.example.scorecheckingapp.adapter.NewsHomePageAdapter
 import com.example.scorecheckingapp.adapter.NewsSpecificSportsAdapter
 import com.example.scorecheckingapp.databinding.FragmentNewsBinding
 import retrofit2.Call
@@ -45,6 +46,7 @@ class NewsFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).binding.bottomNavMenu.menu.getItem(2).isChecked = true
+        (activity as MainActivity).setTitle("News")
 
     }
 
@@ -57,7 +59,7 @@ class NewsFragment() : Fragment() {
             .create(NewsInterface::class.java)
 
         val retrofitNews = retrofit.getNews(
-            "3eec2cda7cmsh0b270ac72d231f3p14a1eajsnb49154bb7c2e",
+            "0556ba5f2bmshb44144c24b34dd9p19186cjsne46d41378f92",
             "livescore6.p.rapidapi.com"
         )
 
@@ -68,7 +70,18 @@ class NewsFragment() : Fragment() {
                 binding.newsRecyclerView.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 binding.newsRecyclerView.adapter =
-                    NewsAdapter(responseBody.topStories, requireContext())
+                    NewsAdapter(responseBody.topStories, requireContext(),object : NewsAdapter.onClickingNews {
+                        override fun clickedNews(topStory: TopStory) {
+                            (context as MainActivity).supportFragmentManager.beginTransaction().apply {
+                                replace(R.id.fragment_container, NewsTopStoryDetails(topStory),"News")
+                                addToBackStack("News")
+                                commit()
+                            }
+                        }
+                    })
+
+                binding.homePageRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                binding.homePageRecyclerView.adapter = NewsHomePageAdapter(responseBody.homepageArticles, requireContext())
 
                 binding.categoriesNews.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

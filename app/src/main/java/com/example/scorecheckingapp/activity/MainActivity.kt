@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity(),
                     R.id.option_menu_football -> {
                         setBottomMenu(
                             FootballScoreTabFragment(),
-                            "FLiveScore"
+                            "LiveScore"
                         ); setFragments(FootballScoreTabFragment(), "LiveScore");
 
                         binding.bottomNavMenu.menu.findItem(R.id.menu_scores)
@@ -104,9 +104,9 @@ class MainActivity : AppCompatActivity(),
                         true
                     }
                     R.id.option_menu_cricket -> {
-                        setBottomMenu(CricketScoreTabFragment(), "CLiveScore");setFragments(
+                        setBottomMenu(CricketScoreTabFragment(), "LiveScore");setFragments(
                             CricketScoreTabFragment(),
-                            "CLiveScore"
+                            "LiveScore"
                         );
                         binding.bottomNavMenu.menu.findItem(R.id.menu_scores)
                             .setIcon(R.drawable.cricket_ball)
