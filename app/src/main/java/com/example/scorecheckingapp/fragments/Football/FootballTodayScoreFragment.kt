@@ -30,7 +30,7 @@ class FootballTodayScoreFragment : Fragment() {
     lateinit var binding: FragmentFootballTodayScoreBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getApiData()
+//        getApiData()
 
     }
 
@@ -69,6 +69,7 @@ class FootballTodayScoreFragment : Fragment() {
         retrofitData.enqueue(object : Callback<Score> {
             override fun onResponse(call: Call<Score>, response: Response<Score>) {
                 val responseBody = response.body()!!
+                binding.progressBar.visibility = View.GONE
                 binding.footballScoreRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
                 binding.footballScoreRecyclerView.adapter = FootballLeagueAdapter(responseBody.Stages , requireContext())
             }

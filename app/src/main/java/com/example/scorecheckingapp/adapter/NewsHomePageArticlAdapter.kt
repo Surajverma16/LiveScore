@@ -35,6 +35,7 @@ class NewsHomePageArticlAdapter (val homeArray : List<Article>, val context : Co
         Glide.with(context)
             .load(homeArray[position].mainMedia.gallery.url)
             .into(holder.image)
-    }
 
+
+    }
 }

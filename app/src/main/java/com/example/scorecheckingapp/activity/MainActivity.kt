@@ -8,7 +8,6 @@ import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.provider.Settings.ACTION_SETTINGS
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
@@ -17,25 +16,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import com.example.scorecheckingapp.API.matchApi.ApiInterface
-import com.example.scorecheckingapp.API.matchApi.BASE_URL
-import com.example.scorecheckingapp.API.matchApi.Score
-import com.example.scorecheckingapp.API.matchApi.Stage
 import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.databinding.ActivityFootballBinding
+import com.example.scorecheckingapp.fragments.AboutUsFragment
 import com.example.scorecheckingapp.fragments.Cricket.CricketScoreTabFragment
 import com.example.scorecheckingapp.fragments.FavouriteFragment
 import com.example.scorecheckingapp.fragments.Football.*
+import com.example.scorecheckingapp.fragments.HelpFragment
 import com.example.scorecheckingapp.fragments.News.NewsFragment
 import com.example.scorecheckingapp.fragments.WatchFragment
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -111,6 +102,14 @@ class MainActivity : AppCompatActivity(),
                         binding.bottomNavMenu.menu.findItem(R.id.menu_scores)
                             .setIcon(R.drawable.cricket_ball)
                         true
+                    }
+
+                    R.id.options_menu_help -> {
+                        setFragments(HelpFragment(), "Help")
+                    }
+
+                    R.id.options_menu_aboutUS -> {
+                        setFragments(AboutUsFragment(), "AboutUs")
                     }
                     else -> setBottomMenu(FootballScoreTabFragment(), "LiveScore")
                 }

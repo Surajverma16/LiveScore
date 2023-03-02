@@ -56,6 +56,7 @@ class NewsDetailsFragment (val data : Data): Fragment() {
         retrofitNews?.enqueue(object : Callback<details?> {
             override fun onResponse(call: Call<details?>, response: Response<details?>) {
                 val responseBody = response.body()
+                binding.progressBar.visibility = View.GONE
                 Log.d("newsResponse", responseBody.toString())
                 binding.newsDetailsHeaderText.text = responseBody!!.adsTargeting.newsArticleTitle
                 Glide.with(context!!)

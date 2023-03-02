@@ -36,8 +36,7 @@ class NewsFragment() : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentNewsBinding.inflate(layoutInflater, container, false)
-        getNewsData()
-//        getHomePageArticle()
+//        getNewsData()
 
 
 
@@ -68,6 +67,8 @@ class NewsFragment() : Fragment() {
             override fun onResponse(call: Call<News>, response: Response<News>) {
                 val responseBody = response.body()!!
                 Log.d("Response", responseBody.toString())
+                binding.progressBar.visibility = View.GONE
+
                 binding.newsRecyclerView.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 binding.newsRecyclerView.adapter =
@@ -95,6 +96,7 @@ class NewsFragment() : Fragment() {
                     NewsCategoriesAdapter(responseBody.categories, requireContext(),
                         object : NewsCategoriesAdapter.onClickedCategories {
                             override fun clickedCategories(category: Category) {
+                                binding.progressBar.visibility = View.VISIBLE
                                 val retrofit1 = Retrofit.Builder()
                                     .addConverterFactory(GsonConverterFactory.create())
                                     .baseUrl("https://livescore6.p.rapidapi.com/news/v2/")
@@ -107,12 +109,19 @@ class NewsFragment() : Fragment() {
                                     "livescore6.p.rapidapi.com"
                                 )
 
+                                binding.newsRecyclerView.layoutManager = null
+                                binding.newsRecyclerView.adapter = null
+                                binding.homePageRecyclerView.layoutManager = null
+                                binding.homePageRecyclerView.adapter = null
+
                                 retrofitNews1?.enqueue(object : Callback<Categories> {
                                     override fun onResponse(
                                         call: Call<Categories>,
                                         response: Response<Categories>,
                                     ) {
                                         val responseBody1 = response.body()!!
+                                        binding.progressBar.visibility = View.GONE
+
                                         binding.newsRecyclerView.layoutManager =
                                             LinearLayoutManager(
                                                 requireContext(),
@@ -155,34 +164,6 @@ class NewsFragment() : Fragment() {
             override fun onFailure(call: Call<News>, t: Throwable) {
                 Log.d("Failure", t.localizedMessage!!.toString())
             }
-        })
-    }
-
-
-    fun getHomePageArticle(){
-        val retrofit = Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://livescore6.p.rapidapi.com/news/v2/")
-            .build()
-            .create(NewsInterface::class.java)
-
-        val retrofitNews = retrofit.getNews(
-            "0556ba5f2bmshb44144c24b34dd9p19186cjsne46d41378f92",
-            "livescore6.p.rapidapi.com"
-        )
-
-        retrofitNews?.enqueue(object : Callback<News> {
-            override fun onResponse(call: Call<News>, response: Response<News>) {
-                val responseBody = response.body()!!
-
-            }
-
-
-            override fun onFailure(call: Call<News>, t: Throwable) {
-                Log.d("Failure", t.localizedMessage!!.toString())
-            }
-
-
         })
     }
 }

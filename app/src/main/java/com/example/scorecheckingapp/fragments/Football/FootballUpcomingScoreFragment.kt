@@ -35,7 +35,7 @@ class FootballUpcomingScoreFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getApiData()
+//        getApiData()
 
     }
 
@@ -74,6 +74,7 @@ class FootballUpcomingScoreFragment : Fragment() {
         retrofitData.enqueue(object : Callback<Score> {
             override fun onResponse(call: Call<Score>, response: Response<Score>) {
                 val responseBody = response.body()!!
+                binding.progressBar.visibility = View.GONE
                 binding.footballUpcomingRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
                 binding.footballUpcomingRecyclerView.adapter = FootballLeagueAdapter(responseBody.Stages , requireContext())
             }

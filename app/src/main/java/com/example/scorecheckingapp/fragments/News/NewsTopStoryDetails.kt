@@ -37,6 +37,7 @@ class NewsTopStoryDetails(val topStory: TopStory) : Fragment() {
 
 
     private fun getNewsDetails() {
+
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://livescore6.p.rapidapi.com/news/v2/")
@@ -52,6 +53,7 @@ class NewsTopStoryDetails(val topStory: TopStory) : Fragment() {
         retrofitNews?.enqueue(object : Callback<details?> {
             override fun onResponse(call: Call<details?>, response: Response<details?>) {
                 val responseBody = response.body()
+                binding1.progressBar.visibility = View.GONE
                 Log.d("newsResponse", responseBody.toString())
                 binding1.newsDetailsHeaderText.text = responseBody!!.adsTargeting.newsArticleTitle
                 Glide.with(context!!)
