@@ -37,6 +37,7 @@ class NewsFragment() : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentNewsBinding.inflate(layoutInflater, container, false)
         getNewsData()
+//        getHomePageArticle()
 
 
 
@@ -80,8 +81,10 @@ class NewsFragment() : Fragment() {
                         }
                     })
 
-                binding.homePageRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                binding.homePageRecyclerView.adapter = NewsHomePageAdapter(responseBody.homepageArticles, requireContext())
+                binding.homePageRecyclerView.layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                binding.homePageRecyclerView.adapter =
+                    NewsHomePageAdapter(responseBody.homepageArticles, requireContext())
 
                 binding.categoriesNews.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -134,6 +137,8 @@ class NewsFragment() : Fragment() {
                                                             }
                                                     }
                                                 })
+                                        binding.homePageRecyclerView.layoutManager = null
+                                        binding.homePageRecyclerView.adapter = null
                                     }
 
                                     override fun onFailure(call: Call<Categories>, t: Throwable) {
@@ -153,4 +158,31 @@ class NewsFragment() : Fragment() {
         })
     }
 
+
+    fun getHomePageArticle(){
+        val retrofit = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://livescore6.p.rapidapi.com/news/v2/")
+            .build()
+            .create(NewsInterface::class.java)
+
+        val retrofitNews = retrofit.getNews(
+            "0556ba5f2bmshb44144c24b34dd9p19186cjsne46d41378f92",
+            "livescore6.p.rapidapi.com"
+        )
+
+        retrofitNews?.enqueue(object : Callback<News> {
+            override fun onResponse(call: Call<News>, response: Response<News>) {
+                val responseBody = response.body()!!
+
+            }
+
+
+            override fun onFailure(call: Call<News>, t: Throwable) {
+                Log.d("Failure", t.localizedMessage!!.toString())
+            }
+
+
+        })
+    }
 }

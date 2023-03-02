@@ -1,6 +1,7 @@
 package com.example.scorecheckingapp.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ class NewsHomePageArticlAdapter (val homeArray : List<Article>, val context : Co
     }
 
     override fun onBindViewHolder(holder: myHomearticle, position: Int) {
+        Log.d("Response",homeArray[position].toString())
         holder.header.text = homeArray[position].title
         holder.sportsType.text = homeArray[position].categoryLabel
         Glide.with(context)

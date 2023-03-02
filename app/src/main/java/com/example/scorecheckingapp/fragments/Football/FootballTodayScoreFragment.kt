@@ -30,7 +30,7 @@ class FootballTodayScoreFragment : Fragment() {
     lateinit var binding: FragmentFootballTodayScoreBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        getApiData()
+        getApiData()
 
     }
 

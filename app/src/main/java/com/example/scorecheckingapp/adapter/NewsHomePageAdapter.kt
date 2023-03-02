@@ -28,6 +28,7 @@ class NewsHomePageAdapter(val homeArray : List<HomepageArticle>, val context : C
     override fun onBindViewHolder(holder: newsViewHolder, position: Int) {
         holder.homeTitle.text = homeArray[position].category.initialTitle
         holder.itemView.findViewById<RecyclerView>(R.id.homepage_news_recyclerView).adapter = NewsHomePageArticlAdapter(homeArray[position].articles, context)
+        Log.d("adapter", homeArray[position].toString())
 
     }
 }
