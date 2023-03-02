@@ -36,7 +36,7 @@ class NewsFragment() : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentNewsBinding.inflate(layoutInflater, container, false)
-//        getNewsData()
+        getNewsData()
 
 
 
