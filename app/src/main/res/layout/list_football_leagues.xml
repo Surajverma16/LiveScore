@@ -43,6 +43,7 @@
         tools:text="League Name" />
 
     <ImageView
+        android:id="@+id/arrowOfLeague"
         android:layout_width="15sp"
         android:layout_height="15sp"
         android:src="@drawable/baseline_arrow_forward_ios_24"

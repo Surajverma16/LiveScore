@@ -4,6 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.Cricket.CricketUpcomingScoreFragment">
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:indeterminateTint="@color/orange"
+        android:layout_gravity="center"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

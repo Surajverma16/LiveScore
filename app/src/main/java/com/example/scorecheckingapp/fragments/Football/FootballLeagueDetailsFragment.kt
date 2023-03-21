@@ -5,9 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.scorecheckingapp.API.matchApi.Stage
 import com.example.scorecheckingapp.R
 
-class FootballLeagueDetailsFragment : Fragment() {
+class FootballLeagueDetailsFragment(league: Stage) : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

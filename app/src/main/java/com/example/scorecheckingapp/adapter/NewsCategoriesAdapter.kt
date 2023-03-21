@@ -1,23 +1,17 @@
 package com.example.scorecheckingapp.adapter
 
-
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Build
-import android.text.style.BackgroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.activity.setViewTreeOnBackPressedDispatcherOwner
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.scorecheckingapp.API.NewsApi.Categories
 import com.example.scorecheckingapp.API.NewsApi.Category
-import com.example.scorecheckingapp.API.NewsApi.News
 import com.example.scorecheckingapp.R
 
 class NewsCategoriesAdapter(
@@ -53,20 +47,16 @@ class NewsCategoriesAdapter(
             selectedItem = position
             notifyDataSetChanged()
         }
-        if(selectedItem == position){
+        if (selectedItem == position) {
             holder.categories.setBackgroundColor(Color.parseColor("#FFFFFFFF"))
             holder.categories.setTextColor(Color.parseColor("#FF000000"))
-        }
-        else{
+        } else {
             holder.categories.setBackgroundColor(Color.parseColor("#424242"))
             holder.categories.setTextColor(Color.parseColor("#FFFFFFFF"))
         }
-
     }
 
     interface onClickedCategories {
         fun clickedCategories(category: Category)
-
     }
-
 }

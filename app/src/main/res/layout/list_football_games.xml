@@ -2,15 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/match_outlook"
         android:layout_marginStart="12sp"
-        android:layout_marginEnd="12sp"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="12sp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,9 +23,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:textSize="10sp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="13dp"
+                android:textSize="10sp"
                 tools:text="time" />
 
             <ImageView
@@ -37,22 +37,23 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="2sp"
                 android:src="@drawable/fc_barcelona" />
+
             <ImageView
                 android:id="@+id/second_team_image"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
-                android:layout_alignParentStart="true"
                 android:layout_below="@id/first_team_image"
+                android:layout_alignParentStart="true"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="3dp"
-                android:src="@drawable/real_madrid"/>
+                android:src="@drawable/real_madrid" />
 
             <TextView
                 android:id="@+id/first_team_name_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginStart="100sp"
                 android:textSize="15sp"
                 android:textStyle="bold"
@@ -74,23 +75,31 @@
                 android:id="@+id/display_current_score_first_team"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="0"
-                android:textStyle="bold"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="12sp"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"/>
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="30sp"
+                android:textStyle="bold"
+                tools:text="0" />
 
             <TextView
                 android:id="@+id/display_current_score_second_team"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="0"
-                android:textStyle="bold"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="12sp"
+                android:layout_below="@id/display_current_score_first_team"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@id/display_current_score_first_team"/>
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="30sp"
+                android:textStyle="bold"
+                tools:text="0" />
+
+            <ImageView
+                android:id="@+id/favourite_star"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/star"
+                android:layout_marginTop="13sp"/>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

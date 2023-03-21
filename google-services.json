@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1047537882160",
+    "firebase_url": "https://scorecheckinapp-default-rtdb.firebaseio.com",
+    "project_id": "scorecheckinapp",
+    "storage_bucket": "scorecheckinapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047537882160:android:fab7ff8c123f7790e349f5",
+        "android_client_info": {
+          "package_name": "com.example.scorecheckingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1047537882160-if1nttp45fdp94hdk2ttjp1b97u4uvja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.scorecheckingapp",
+            "certificate_hash": "2b947ba8d5824e9deb4ece0fb557dc3e542b6c32"
+          }
+        },
+        {
+          "client_id": "1047537882160-g1v9sa9437e5n247q8a7hd1injc7q644.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBooQboAW_pZ0GAnUe6mvMn1M66SdY2Xl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1047537882160-g1v9sa9437e5n247q8a7hd1injc7q644.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.scorecheckingapp.API.NewsApi.Article
 import com.example.scorecheckingapp.R
 
-class NewsHomePageArticlAdapter (val homeArray : List<Article>, val context : Context) : RecyclerView.Adapter<NewsHomePageArticlAdapter.myHomearticle>() {
+class NewsHomePageArticlAdapter (val homeArray : List<Article>, val context : Context,val clicked : onClickedHomePageArticle) : RecyclerView.Adapter<NewsHomePageArticlAdapter.myHomearticle>() {
     class myHomearticle(itemView :View) :RecyclerView.ViewHolder(itemView) {
         val image = itemView.findViewById<ImageView>(R.id.news_image)
         val header = itemView.findViewById<TextView>(R.id.news_header_text)
@@ -35,7 +35,13 @@ class NewsHomePageArticlAdapter (val homeArray : List<Article>, val context : Co
         Glide.with(context)
             .load(homeArray[position].mainMedia.gallery.url)
             .into(holder.image)
+        holder.itemView.setOnClickListener {
+            clicked.onClicked(homeArray[position])
+        }
 
 
+    }
+    interface onClickedHomePageArticle {
+        fun onClicked(homepageArticle: Article)
     }
 }

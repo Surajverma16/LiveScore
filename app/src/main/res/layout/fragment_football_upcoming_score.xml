@@ -5,17 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".fragments.Football.FootballUpcomingScoreFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
+            android:layout_gravity="center"
             android:indeterminateTint="@color/orange"
-            android:layout_centerHorizontal="true"
             />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -24,7 +20,5 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="vertical" />
-
-    </RelativeLayout>
 
 </FrameLayout>

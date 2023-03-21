@@ -5,14 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.scorecheckingapp.R
-import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
+import com.example.scorecheckingapp.API.CricketApi.Event
 import com.example.scorecheckingapp.databinding.FragmentCricketMatchDetailsBinding
 import com.example.scorecheckingapp.databinding.FragmentFootballMatchDetailsBinding
 
-class CricketMatchDetailsFragment(val footballScoreDataClass: FootballScoreDataClass) : Fragment() {
+class CricketMatchDetailsFragment(val event: Event) : Fragment() {
 
-    lateinit var binding: FragmentFootballMatchDetailsBinding
+    lateinit var binding: FragmentCricketMatchDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -21,15 +20,21 @@ class CricketMatchDetailsFragment(val footballScoreDataClass: FootballScoreDataC
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        /*holder.matchType.text = cricketArray[position].EtTx
+        holder.teamOneName.text = cricketArray[position].T1[0].Nm
+        holder.teamTwoName.text = cricketArray[position].T2[0].Nm
+        holder.matchSituation.text= cricketArray[position].ECo
+        holder.teamOneScore.text = cricketArray[position].Tr1C1.toString()
+        holder.teamTwoScore.text = cricketArray[position].Tr2C1.toString()
+*/
         // Inflate the layout for this fragment
-        binding = FragmentFootballMatchDetailsBinding.inflate(layoutInflater,container,false)
-        binding.detailsTiming.text = footballScoreDataClass.time
-        binding.detailsFirstTeamName.text = footballScoreDataClass.firstTeamName
-        binding.detailsSecondTeamName.text = footballScoreDataClass.secondTeamName
-        binding.detailsFirstTeamImage.setImageResource(footballScoreDataClass.firstTeamImage)
-        binding.detailsSecondTeamImage.setImageResource(footballScoreDataClass.secondTeamImage)
-        binding.detailsScoreFirstTeam.text = footballScoreDataClass.firstTeamScore.toString()
-        binding.detailsScoreSecondTeam.text = footballScoreDataClass.secondTeamScore.toString()
+        binding = FragmentCricketMatchDetailsBinding.inflate(layoutInflater,container,false)
+        binding.matchTypeText.text = event.EtTx
+        binding.team1NameText.text = event.T1[0].Nm
+        binding.team2NameText.text = event.T2[0].Nm
+        binding.matchSituationText.text = event.ECo
+        binding.team1ScoreText.text = event.Tr1C1.toString()
+        binding.team2ScoreText.text = event.Tr2C1.toString()
         return binding.root
     }
 

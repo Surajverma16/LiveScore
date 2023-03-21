@@ -41,6 +41,10 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
+                    android:id="@+id/options_menu_account"
+                    android:title="Account"
+                    android:icon="@drawable/baseline_account_circle_24"/>
+                <item
                     android:id="@+id/options_menu_notifiction"
                     android:icon="@drawable/baseline_notifications_24"
                     android:title="Notification" />

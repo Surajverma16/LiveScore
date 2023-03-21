@@ -36,10 +36,7 @@ class NewsFragment() : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentNewsBinding.inflate(layoutInflater, container, false)
-//        getNewsData()
-
-
-
+        getNewsData()
         return binding.root
     }
 
@@ -47,7 +44,6 @@ class NewsFragment() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).binding.bottomNavMenu.menu.getItem(2).isChecked = true
         (activity as MainActivity).setTitle("News")
-
     }
 
 
@@ -72,15 +68,23 @@ class NewsFragment() : Fragment() {
                 binding.newsRecyclerView.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                 binding.newsRecyclerView.adapter =
-                    NewsAdapter(responseBody.topStories, requireContext(),object : NewsAdapter.onClickingNews {
-                        override fun clickedNews(topStory: TopStory) {
-                            (context as MainActivity).supportFragmentManager.beginTransaction().apply {
-                                replace(R.id.fragment_container, NewsTopStoryDetails(topStory),"News")
-                                addToBackStack("News")
-                                commit()
+                    NewsAdapter(
+                        responseBody.topStories,
+                        requireContext(),
+                        object : NewsAdapter.onClickingNews {
+                            override fun clickedNews(topStory: TopStory) {
+                                (context as MainActivity).supportFragmentManager.beginTransaction()
+                                    .apply {
+                                        replace(
+                                            R.id.fragment_container,
+                                            NewsTopStoryDetails(topStory),
+                                            "News"
+                                        )
+                                        addToBackStack("News")
+                                        commit()
+                                    }
                             }
-                        }
-                    })
+                        })
 
                 binding.homePageRecyclerView.layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

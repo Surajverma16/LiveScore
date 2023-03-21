@@ -36,7 +36,7 @@ class FootballTodayScoreFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentFootballTodayScoreBinding.inflate(layoutInflater, container, false)
@@ -46,7 +46,6 @@ class FootballTodayScoreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
 
     }
@@ -62,17 +61,20 @@ class FootballTodayScoreFragment : Fragment() {
         val retrofitData = retrofit.getScore(
             SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date()),
             "football",
-            "5.5",
-            "3eec2cda7cmsh0b270ac72d231f3p14a1eajsnb49154bb7c2e",
+            TimeZone.getTimeZone("GMT+05:30").toString(),
+            "0556ba5f2bmshb44144c24b34dd9p19186cjsne46d41378f92",
             "livescore6.p.rapidapi.com"
         )
         retrofitData.enqueue(object : Callback<Score> {
             override fun onResponse(call: Call<Score>, response: Response<Score>) {
                 val responseBody = response.body()!!
                 binding.progressBar.visibility = View.GONE
-                binding.footballScoreRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-                binding.footballScoreRecyclerView.adapter = FootballLeagueAdapter(responseBody.Stages , requireContext())
+                binding.footballScoreRecyclerView.layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                binding.footballScoreRecyclerView.adapter =
+                    FootballLeagueAdapter(responseBody.Stages, requireContext())
             }
+
             override fun onFailure(call: Call<Score>, t: Throwable) {
                 Log.d("Failure", t.localizedMessage!!)
             }
@@ -82,41 +84,20 @@ class FootballTodayScoreFragment : Fragment() {
 }
 
 
+/*
+    displayArray,
+    requireContext(),
+    object : FootballScoreAdapter.onSingleItemClick{
+        override fun clicked(footballScoreDataClass: FootballScoreDataClass) {
+            (context as MainActivity).supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragment_container, FootballMatchDetailsFragment(footballScoreDataClass))
+                addToBackStack(null)
+                commit()
+            }
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*
-            displayArray,
-            requireContext(),
-            object : FootballScoreAdapter.onSingleItemClick{
-                override fun clicked(footballScoreDataClass: FootballScoreDataClass) {
-                    (context as MainActivity).supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.fragment_container, FootballMatchDetailsFragment(footballScoreDataClass))
-                        addToBackStack(null)
-                        commit()
-                    }
-                }
-
-            }*/
+    }*/
 //        )
-
-
-
 
 
 /*

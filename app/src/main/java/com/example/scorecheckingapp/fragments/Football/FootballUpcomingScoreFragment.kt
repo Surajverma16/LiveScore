@@ -1,6 +1,5 @@
 package com.example.scorecheckingapp.fragments.Football
 
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -13,11 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.scorecheckingapp.API.matchApi.ApiInterface
 import com.example.scorecheckingapp.API.matchApi.BASE_URL
 import com.example.scorecheckingapp.API.matchApi.Score
-import com.example.scorecheckingapp.R
-import com.example.scorecheckingapp.activity.MainActivity
 import com.example.scorecheckingapp.adapter.FootballLeagueAdapter
-import com.example.scorecheckingapp.adapter.FootballScoreAdapter
-import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
 import com.example.scorecheckingapp.databinding.FragmentFootballUpcomingScoreBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,7 +30,7 @@ class FootballUpcomingScoreFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        getApiData()
+        getApiData()
 
     }
 
@@ -68,7 +63,7 @@ class FootballUpcomingScoreFragment : Fragment() {
             LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern("yyyyMMdd")),
             "football",
             "5.5",
-            "3eec2cda7cmsh0b270ac72d231f3p14a1eajsnb49154bb7c2e",
+            "0556ba5f2bmshb44144c24b34dd9p19186cjsne46d41378f92",
             "livescore6.p.rapidapi.com"
         )
         retrofitData.enqueue(object : Callback<Score> {

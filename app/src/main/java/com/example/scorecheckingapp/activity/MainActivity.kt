@@ -18,13 +18,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.databinding.ActivityFootballBinding
-import com.example.scorecheckingapp.fragments.AboutUsFragment
+import com.example.scorecheckingapp.fragments.*
 import com.example.scorecheckingapp.fragments.Cricket.CricketScoreTabFragment
-import com.example.scorecheckingapp.fragments.FavouriteFragment
 import com.example.scorecheckingapp.fragments.Football.*
-import com.example.scorecheckingapp.fragments.HelpFragment
 import com.example.scorecheckingapp.fragments.News.NewsFragment
-import com.example.scorecheckingapp.fragments.WatchFragment
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
@@ -60,10 +57,8 @@ class MainActivity : AppCompatActivity(),
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, FootballScoreTabFragment()).commit()
         setBottomMenu(FootballScoreTabFragment(), "LiveScore")
-
     }
 
 
@@ -73,7 +68,7 @@ class MainActivity : AppCompatActivity(),
                 R.id.menu_scores -> setFragments(bottomFragment, title)
                 R.id.menu_favourites -> setFragments(FavouriteFragment(), "Favourite")
                 R.id.menu_news -> setFragments(NewsFragment(), "News")
-                R.id.menu_watch -> setFragments(WatchFragment(), "Watch")
+//                R.id.menu_watch -> setFragments(WatchFragment(), "Watch")
                 else -> true
             }
         }
@@ -111,12 +106,14 @@ class MainActivity : AppCompatActivity(),
                     R.id.options_menu_aboutUS -> {
                         setFragments(AboutUsFragment(), "AboutUs")
                     }
+                    R.id.options_menu_account -> {
+                        setFragments(AccountFragment(), "Account")
+                    }
                     else -> setBottomMenu(FootballScoreTabFragment(), "LiveScore")
                 }
             }
             return true
         }
-
 
         return super.onOptionsItemSelected(item)
     }
@@ -132,8 +129,6 @@ class MainActivity : AppCompatActivity(),
         }
         return true
     }
-
-
 
 
     override fun onNetworkConnectionChanged(isConnected: Boolean) {
