@@ -7,18 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.scorecheckingapp.API.CricketApi.CricketScoreApiInterface
-import com.example.scorecheckingapp.API.CricketApi.Stage
+import com.example.scorecheckingapp.interfaceApi.CricketScoreApiInterface
 import com.example.scorecheckingapp.API.CricketApi.cricket
-import com.example.scorecheckingapp.API.matchApi.ApiInterface
-import com.example.scorecheckingapp.API.matchApi.BASE_URL
-import com.example.scorecheckingapp.API.matchApi.Score
-import com.example.scorecheckingapp.R
-import com.example.scorecheckingapp.activity.MainActivity
 import com.example.scorecheckingapp.adapter.CricketLeagueAdapter
-import com.example.scorecheckingapp.adapter.FootballLeagueAdapter
-import com.example.scorecheckingapp.adapter.FootballScoreAdapter
-import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
 import com.example.scorecheckingapp.databinding.FragmentCricketTodayScoreBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,7 +18,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class CricketTodayScoreFragment : Fragment() {
 

@@ -15,6 +15,8 @@ import com.example.scorecheckingapp.adapter.NewsCategoriesAdapter
 import com.example.scorecheckingapp.adapter.NewsHomePageAdapter
 import com.example.scorecheckingapp.adapter.NewsSpecificSportsAdapter
 import com.example.scorecheckingapp.databinding.FragmentNewsBinding
+import com.example.scorecheckingapp.interfaceApi.NewsCategoriesInterface
+import com.example.scorecheckingapp.interfaceApi.NewsInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -7,16 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.scorecheckingapp.API.matchApi.ApiInterface
-import com.example.scorecheckingapp.API.matchApi.BASE_URL
 import com.example.scorecheckingapp.API.matchApi.Score
-import com.example.scorecheckingapp.API.matchApi.Stage
-import com.example.scorecheckingapp.R
-import com.example.scorecheckingapp.activity.MainActivity
-import com.example.scorecheckingapp.adapter.FootballAdapterScore
 import com.example.scorecheckingapp.adapter.FootballLeagueAdapter
-import com.example.scorecheckingapp.dataClass.FootballScoreDataClass
 import com.example.scorecheckingapp.databinding.FragmentFootballTodayScoreBinding
+import com.example.scorecheckingapp.interfaceApi.ApiInterface
+import com.example.scorecheckingapp.interfaceApi.BASE_URL
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +25,7 @@ class FootballTodayScoreFragment : Fragment() {
     lateinit var binding: FragmentFootballTodayScoreBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        getApiData()
+        getApiData()
 
     }
 
@@ -44,11 +39,6 @@ class FootballTodayScoreFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-    }
 
     fun getApiData() {
         val retrofit = Retrofit.Builder()

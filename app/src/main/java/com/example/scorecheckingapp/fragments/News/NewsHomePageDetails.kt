@@ -6,11 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.scorecheckingapp.API.NewsApi.Article
-import com.example.scorecheckingapp.API.NewsApi.NewsDetailsInterface
+import com.example.scorecheckingapp.interfaceApi.NewsDetailsInterface
 import com.example.scorecheckingapp.API.NewsApi.details
 import com.example.scorecheckingapp.databinding.ListNewsDetailsBinding
 import retrofit2.Call

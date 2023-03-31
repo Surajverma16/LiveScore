@@ -87,8 +87,6 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-
                             val user = auth.currentUser
                             if (user != null) {
                                 updateUI(user)
@@ -120,23 +118,26 @@ class LoginActivity : AppCompatActivity() {
         if (task.isSuccessful){
             val account : GoogleSignInAccount? = task.result
             if(account != null){
-                updateUIGoogle(account)
+                val credentials = GoogleAuthProvider.getCredential(account.idToken,null)
+                auth.signInWithCredential(credentials).addOnCompleteListener {
+                    if(it.isSuccessful){
+                    updateUIGoogle()
+                }
+                    else{
+                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                }
+
             }
         }else{
             Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun updateUIGoogle(account: GoogleSignInAccount) {
-            val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-        auth.signInWithCredential(credential).addOnCompleteListener{
-            if(it.isSuccessful){
+    private fun updateUIGoogle() {
                 val intent = Intent(this , MainActivity::class.java)
                 startActivity(intent)
-            }else{
-                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-            }
-        }
+
     }
 
     /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

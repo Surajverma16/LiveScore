@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.scorecheckingapp.API.NewsApi.NewsDetailsInterface
+import com.example.scorecheckingapp.interfaceApi.NewsDetailsInterface
 import com.example.scorecheckingapp.API.NewsApi.TopStory
 import com.example.scorecheckingapp.API.NewsApi.details
 import com.example.scorecheckingapp.databinding.ListNewsDetailsBinding

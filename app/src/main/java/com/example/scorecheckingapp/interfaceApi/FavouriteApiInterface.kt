@@ -1,5 +1,6 @@
-package com.example.scorecheckingapp.API.favouriteApi
+package com.example.scorecheckingapp.interfaceApi
 
+import com.example.scorecheckingapp.API.favouriteApi.favourite
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header

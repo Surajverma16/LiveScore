@@ -1,5 +1,6 @@
-package com.example.scorecheckingapp.API.NewsApi
+package com.example.scorecheckingapp.interfaceApi
 
+import com.example.scorecheckingapp.API.NewsApi.Categories
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header

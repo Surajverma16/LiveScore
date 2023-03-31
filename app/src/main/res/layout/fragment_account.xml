@@ -23,30 +23,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10sp"
         android:layout_marginTop="104dp"
+        android:text="Name"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Name" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/display_Email_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10sp"
+        android:text="Email"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/display_name_text"
-        android:text="Email" />
+        app:layout_constraintTop_toBottomOf="@id/display_name_text" />
 
     <TextView
         android:id="@+id/display_Phoneno_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10sp"
+        android:text="Phone Number"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/display_Email_text"
-        android:text="Phone Number" />
+        app:layout_constraintTop_toBottomOf="@id/display_Email_text" />
 
     <TextView
         android:id="@+id/name_text"
@@ -83,10 +83,12 @@
         android:id="@+id/signout_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20sp"
+        android:layout_marginBottom="84dp"
         android:text="Sign Out"
         android:textAlignment="center"
+        android:textColor="@color/orange"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 

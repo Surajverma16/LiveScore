@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.scorecheckingapp.activity.MainActivity
 import com.example.scorecheckingapp.adapter.FavouriteAdapter
-import com.example.scorecheckingapp.dataClass.ListFavouriteId
 import com.example.scorecheckingapp.dataClass.ViewFavouriteClass
 import com.example.scorecheckingapp.databinding.FragmentFavouriteBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -50,11 +49,16 @@ class FavouriteFragment() : Fragment() {
                 if (snapshot.exists()) {
                     for (i in snapshot.children) {
                         val listData = i.getValue(ViewFavouriteClass::class.java)
-                        dataFavourite.add(listData!!)
+                        listData!!.key = i.key.toString()
+                        dataFavourite.add(listData)
                         binding.progressBar.visibility = View.GONE
                         binding.favouriteRecyclerView.adapter =
-                            FavouriteAdapter(requireContext(), dataFavourite)
-                        Log.d("snapshot", dataFavourite.toString())
+                            FavouriteAdapter(requireContext(), dataFavourite,object : FavouriteAdapter.favouriteClicked {
+                                override fun onClicked(viewFavouriteClass: ViewFavouriteClass) {
+                                    FirebaseDatabase.getInstance().getReference("users/$user/listId").child(viewFavouriteClass.key!!).removeValue()
+                                    dataFavourite.clear()
+                                }
+                            })
                     }
                 } else {
                     binding.progressBar.visibility = View.GONE

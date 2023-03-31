@@ -9,9 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.scorecheckingapp.API.CricketApi.CricketScoreApiInterface
+import com.example.scorecheckingapp.interfaceApi.CricketScoreApiInterface
 import com.example.scorecheckingapp.API.CricketApi.cricket
-import com.example.scorecheckingapp.R
 import com.example.scorecheckingapp.adapter.CricketLeagueAdapter
 import com.example.scorecheckingapp.databinding.FragmentCricketUpcomingScoreBinding
 import retrofit2.Call
@@ -19,7 +18,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*

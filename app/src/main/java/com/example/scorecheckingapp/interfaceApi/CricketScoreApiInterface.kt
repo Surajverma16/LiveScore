@@ -1,20 +1,18 @@
-package com.example.scorecheckingapp.API.matchApi
+package com.example.scorecheckingapp.interfaceApi
 
+import com.example.scorecheckingapp.API.CricketApi.cricket
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
 
-
-const val BASE_URL = "https://livescore6.p.rapidapi.com/matches/v2/"
-
-interface ApiInterface {
+interface CricketScoreApiInterface {
     @GET("list-by-date")
     fun getScore(
-        @Query("Date") date: String,
         @Query("Category") category: String,
+        @Query("Date")date : String,
         @Query("Timezone") timezone : String,
         @Header("X-RapidAPI-Key") apiKey : String,
         @Header("X-RapidAPI-Host") apiHost : String
-    ):Call<Score>
+    ):Call<cricket>
 }

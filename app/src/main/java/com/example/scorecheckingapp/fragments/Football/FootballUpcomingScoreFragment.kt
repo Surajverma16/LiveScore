@@ -9,11 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.scorecheckingapp.API.matchApi.ApiInterface
-import com.example.scorecheckingapp.API.matchApi.BASE_URL
 import com.example.scorecheckingapp.API.matchApi.Score
 import com.example.scorecheckingapp.adapter.FootballLeagueAdapter
 import com.example.scorecheckingapp.databinding.FragmentFootballUpcomingScoreBinding
+import com.example.scorecheckingapp.interfaceApi.ApiInterface
+import com.example.scorecheckingapp.interfaceApi.BASE_URL
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,11 +58,10 @@ class FootballUpcomingScoreFragment : Fragment() {
             .build()
             .create(ApiInterface::class.java)
 
-
         val retrofitData = retrofit.getScore(
             LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern("yyyyMMdd")),
             "football",
-            "5.5",
+            TimeZone.getTimeZone("GMT+5:30").toString(),
             "0556ba5f2bmshb44144c24b34dd9p19186cjsne46d41378f92",
             "livescore6.p.rapidapi.com"
         )
@@ -78,13 +77,6 @@ class FootballUpcomingScoreFragment : Fragment() {
             }
         })
     }
-
-
-
-
-
-
-
 }
 
 /*

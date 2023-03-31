@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.scorecheckingapp.API.NewsApi.Data
-import com.example.scorecheckingapp.API.NewsApi.NewsDetailsInterface
+import com.example.scorecheckingapp.interfaceApi.NewsDetailsInterface
 import com.example.scorecheckingapp.API.NewsApi.details
 import com.example.scorecheckingapp.databinding.ListNewsDetailsBinding
 import retrofit2.Call
